@@ -57,19 +57,20 @@ const FRAGMENT_SHADER = /* glsl */ `
     vec3 v = normalize(vViewDir);
 
     float fres = pow(1.0 - abs(dot(n, v)), 3.0);
-    float crest = smoothstep(0.15, 0.95, vHeight);
+    float crest = smoothstep(0.05, 0.95, vHeight);
 
     vec3 col = uBase;
-    col = mix(col, uBrand, crest * 0.55);
-    col += uBrand * fres * 0.45;
-    col += uSheen * pow(fres, 4.0) * 0.5;
+    col = mix(col, uBrand, crest * 0.95);
+    col += uBrand * fres * 0.9;
+    col += uSheen * pow(fres, 4.0) * 1.1;
+    col += uBrand * pow(crest, 2.5) * 0.6;
 
     // melt into the page background before reaching the frame edges,
     // and keep the glow confined to a horizontal band
     float edge = smoothstep(0.0, 0.25, vUv.x) * smoothstep(1.0, 0.75, vUv.x)
                * smoothstep(0.0, 0.38, vUv.y) * smoothstep(1.0, 0.52, vUv.y);
 
-    gl_FragColor = vec4(col * edge * 0.6, 1.0);
+    gl_FragColor = vec4(col * edge, 1.0);
   }
 `
 

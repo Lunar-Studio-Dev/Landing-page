@@ -89,7 +89,7 @@ const fadeUp = {
 function Hero() {
   return (
     <section className="min-h-svh">
-      <div className="relative flex min-h-[calc(100svh)] flex-col items-center justify-center overflow-hidden rounded-3xl px-6 text-center sm:min-h-[calc(100svh)]">
+      <div className="relative flex min-h-[calc(100svh)] flex-col items-center justify-center overflow-hidden rounded-3xl bg-black px-6 text-center sm:min-h-[calc(100svh)]">
         <HeroWave />
         <motion.div
           variants={container}
