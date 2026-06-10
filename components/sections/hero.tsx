@@ -3,8 +3,14 @@
 import * as React from "react"
 import { ArrowRight } from "lucide-react"
 import { AnimatePresence, motion, useReducedMotion } from "motion/react"
+import dynamic from "next/dynamic"
 
 import { Button } from "@/components/ui/button"
+
+const HeroWave = dynamic(
+  () => import("@/components/sections/hero-wave").then((m) => m.HeroWave),
+  { ssr: false }
+)
 
 const ROTATING_WORDS = ["solutions", "workflows", "automations"]
 const ROTATE_INTERVAL_MS = 2600
@@ -82,13 +88,14 @@ const fadeUp = {
 
 function Hero() {
   return (
-    <section className="min-h-svh p-3 sm:p-4">
-      <div className="relative flex min-h-[calc(100svh-1.5rem)] flex-col items-center justify-center overflow-hidden rounded-3xl border px-6 text-center sm:min-h-[calc(100svh-2rem)]">
+    <section className="min-h-svh">
+      <div className="relative flex min-h-[calc(100svh)] flex-col items-center justify-center overflow-hidden rounded-3xl px-6 text-center sm:min-h-[calc(100svh)]">
+        <HeroWave />
         <motion.div
           variants={container}
           initial="hidden"
           animate="visible"
-          className="flex max-w-4xl flex-col items-center gap-8 pb-12"
+          className="relative z-10 flex max-w-4xl flex-col items-center gap-8 pb-12"
         >
           <motion.h1
             variants={fadeUp}
@@ -121,19 +128,6 @@ function Hero() {
               Our projects
             </Button>
           </motion.div>
-        </motion.div>
-
-        {/* Bottom brand glow — large accent areas stay translucent, never opaque fills */}
-        <motion.div
-          aria-hidden
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.9, duration: 1.4 }}
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-72"
-        >
-          <div className="absolute bottom-[-55%] left-1/2 h-full w-3/4 -translate-x-1/2 rounded-[100%] bg-brand opacity-25 blur-3xl" />
-          <div className="absolute bottom-[-65%] left-1/2 h-3/4 w-2/5 -translate-x-1/2 rounded-[100%] bg-brand opacity-50 blur-2xl" />
-          <div className="absolute bottom-[-70%] left-1/2 h-1/2 w-1/5 -translate-x-1/2 rounded-[100%] bg-foreground opacity-40 blur-2xl" />
         </motion.div>
       </div>
     </section>

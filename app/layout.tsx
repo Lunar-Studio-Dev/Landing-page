@@ -1,6 +1,8 @@
 import { Geist, Geist_Mono, Inter } from "next/font/google"
 
 import "./globals.css"
+import { AppScrollArea, AppScrollProvider } from "@/components/app-scroll"
+import { Header } from "@/components/sections/header"
 import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@/lib/utils";
 
@@ -22,8 +24,13 @@ export default function RootLayout({
       suppressHydrationWarning
       className={cn("antialiased", fontMono.variable, "font-sans", inter.variable)}
     >
-      <body>
-        <ThemeProvider>{children}</ThemeProvider>
+      <body className="h-svh overflow-hidden">
+        <ThemeProvider>
+          <AppScrollProvider>
+            <Header />
+            <AppScrollArea>{children}</AppScrollArea>
+          </AppScrollProvider>
+        </ThemeProvider>
       </body>
     </html>
   )
