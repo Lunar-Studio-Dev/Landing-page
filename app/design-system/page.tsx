@@ -1,8 +1,8 @@
 import { ArrowRight, Check, Sparkles } from "lucide-react"
 
-import { ColorPalette } from "@/components/color-palette"
-import { Hero } from "@/components/showcase-hero"
-import { SectionHeading } from "@/components/section-heading"
+import { ColorPalette } from "@/components/showcase/color-palette"
+import { Hero } from "@/components/showcase/hero"
+import { SectionHeading } from "@/components/showcase/section-heading"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import {
