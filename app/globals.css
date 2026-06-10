@@ -82,10 +82,10 @@
     --border: oklch(0.92 0.004 248);
     --input: oklch(0.92 0.004 248);
     --ring: var(--brand);
-    --brand: oklch(0.55 0.18 250);
+    --brand: oklch(0.6632 0.18 250.61);
     --brand-foreground: oklch(0.985 0.002 248);
-    --brand-muted: oklch(0.55 0.18 250 / 12%);
-    --brand-glow: oklch(0.55 0.18 250 / 25%);
+    --brand-muted: oklch(0.6632 0.18 250.61 / 12%);
+    --brand-glow: oklch(0.6632 0.18 250.61 / 25%);
     --chart-1: oklch(0.87 0.002 248);
     --chart-2: oklch(0.556 0.004 257);
     --chart-3: oklch(0.439 0.004 262);
@@ -105,8 +105,8 @@
 /*
  * Dark mode is the primary theme for this aesthetic. The neutral ramp
  * mirrors Raycast's: bg #07080a, surfaces #111214/#1b1c1e, body text
- * #9c9c9d, headings near-white. Brand blue #56c2ff is their pastel
- * accent lightness, shifted from red to blue.
+ * #9c9c9d, headings near-white. The brand blue is shared across both
+ * themes and always carries white foreground text.
  */
 .dark {
     --background: oklch(0.134 0.005 262);
@@ -127,10 +127,10 @@
     --border: oklch(1 0 0 / 10%);
     --input: oklch(1 0 0 / 15%);
     --ring: var(--brand);
-    --brand: oklch(0.776 0.131 237);
-    --brand-foreground: oklch(0.134 0.005 262);
-    --brand-muted: oklch(0.776 0.131 237 / 15%);
-    --brand-glow: oklch(0.776 0.131 237 / 30%);
+    --brand: oklch(0.6632 0.18 250.61);
+    --brand-foreground: oklch(0.985 0.002 248);
+    --brand-muted: oklch(0.6632 0.18 250.61 / 15%);
+    --brand-glow: oklch(0.6632 0.18 250.61 / 30%);
     --chart-1: oklch(0.87 0.002 248);
     --chart-2: oklch(0.556 0.004 257);
     --chart-3: oklch(0.439 0.004 262);
