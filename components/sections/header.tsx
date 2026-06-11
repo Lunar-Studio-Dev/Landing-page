@@ -1,17 +1,17 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import Link from "next/link"
+import * as React from "react";
+import Link from "next/link";
 import {
   motion,
   useMotionValueEvent,
   useReducedMotion,
   useScroll,
-} from "motion/react"
+} from "motion/react";
 
-import { useAppScrollViewport } from "@/components/app-scroll"
-import { Button } from "@/components/ui/button"
-import { cn } from "@/lib/utils"
+import { useAppScrollViewport } from "@/components/app-scroll";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
   { label: "About us", href: "#about" },
@@ -19,20 +19,20 @@ const NAV_LINKS = [
   { label: "Team", href: "#team" },
   { label: "Reviews", href: "#reviews" },
   { label: "FAQ", href: "#faq" },
-]
+];
 
-const SCROLL_THRESHOLD = 80
+const SCROLL_THRESHOLD = 80;
 
 function Header() {
-  const [scrolled, setScrolled] = React.useState(false)
-  const viewportRef = useAppScrollViewport()
+  const [scrolled, setScrolled] = React.useState(false);
+  const viewportRef = useAppScrollViewport();
   // the app scrolls inside the ScrollArea viewport, not the window
-  const { scrollY } = useScroll({ container: viewportRef ?? undefined })
-  const reduceMotion = useReducedMotion()
+  const { scrollY } = useScroll({ container: viewportRef ?? undefined });
+  const reduceMotion = useReducedMotion();
 
   useMotionValueEvent(scrollY, "change", (y) => {
-    setScrolled(y > SCROLL_THRESHOLD)
-  })
+    setScrolled(y > SCROLL_THRESHOLD);
+  });
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 flex justify-center px-3 sm:px-4">
@@ -55,16 +55,20 @@ function Header() {
           "flex w-full items-center justify-between gap-4 border px-4 transition-[background-color,border-color,box-shadow,backdrop-filter] duration-300 sm:px-5",
           scrolled
             ? "border-border bg-background/70 shadow-lg shadow-black/20 backdrop-blur-md"
-            : "border-transparent bg-transparent"
+            : "border-transparent bg-transparent",
         )}
       >
         <Link href="/" className="flex shrink-0 items-center gap-2.5">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/logo.svg" alt="Lunar Studio logo" className="h-[26px] w-auto" />
+          <img
+            src="/logo.svg"
+            alt="Lunar Studio logo"
+            className="h-[26px] w-auto"
+          />
           <span className="font-medium whitespace-nowrap">Lunar Studio</span>
         </Link>
 
-        <nav className="hidden items-center rounded-full border border-white/10 bg-white/4 px-1.5 py-1 backdrop-blur-md md:flex">
+        <nav className="hidden items-center md:flex">
           {NAV_LINKS.map((link) => (
             <a
               key={link.href}
@@ -76,12 +80,12 @@ function Header() {
           ))}
         </nav>
 
-        <Button asChild className="shrink-0">
-          <a href="#contact">Contact us</a>
+        <Button asChild className="shrink-0" variant={"brand"}>
+          <a href="#contact ">Contact us</a>
         </Button>
       </motion.div>
     </header>
-  )
+  );
 }
 
-export { Header }
+export { Header };

@@ -1,42 +1,42 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { ArrowRight } from "lucide-react"
-import { AnimatePresence, motion, useReducedMotion } from "motion/react"
-import dynamic from "next/dynamic"
+import * as React from "react";
+import { ArrowRight } from "lucide-react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import dynamic from "next/dynamic";
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 
 const HeroWave = dynamic(
   () => import("@/components/sections/hero-wave").then((m) => m.HeroWave),
-  { ssr: false }
-)
+  { ssr: false },
+);
 
-const ROTATING_WORDS = ["solutions", "workflows", "automations"]
-const ROTATE_INTERVAL_MS = 2600
+const ROTATING_WORDS = ["solutions", "workflows", "automations"];
+const ROTATE_INTERVAL_MS = 2600;
 
 function RotatingWord() {
-  const [index, setIndex] = React.useState(0)
-  const [width, setWidth] = React.useState<number | null>(null)
-  const measureRef = React.useRef<HTMLSpanElement>(null)
-  const reduceMotion = useReducedMotion()
+  const [index, setIndex] = React.useState(0);
+  const [width, setWidth] = React.useState<number | null>(null);
+  const measureRef = React.useRef<HTMLSpanElement>(null);
+  const reduceMotion = useReducedMotion();
 
   React.useEffect(() => {
     const id = setInterval(
       () => setIndex((i) => (i + 1) % ROTATING_WORDS.length),
-      ROTATE_INTERVAL_MS
-    )
-    return () => clearInterval(id)
-  }, [])
+      ROTATE_INTERVAL_MS,
+    );
+    return () => clearInterval(id);
+  }, []);
 
-  const word = ROTATING_WORDS[index]
+  const word = ROTATING_WORDS[index];
 
   // Measure the upcoming word so the container width glides instead of jumping
   React.useLayoutEffect(() => {
     if (measureRef.current) {
-      setWidth(measureRef.current.offsetWidth)
+      setWidth(measureRef.current.offsetWidth);
     }
-  }, [word])
+  }, [word]);
 
   return (
     <span className="relative inline-flex">
@@ -67,7 +67,7 @@ function RotatingWord() {
         </AnimatePresence>
       </motion.span>
     </span>
-  )
+  );
 }
 
 const container = {
@@ -75,7 +75,7 @@ const container = {
   visible: {
     transition: { staggerChildren: 0.12, delayChildren: 0.1 },
   },
-}
+};
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -84,7 +84,7 @@ const fadeUp = {
     y: 0,
     transition: { type: "spring", stiffness: 150, damping: 19 },
   },
-} as const
+} as const;
 
 function Hero() {
   return (
@@ -116,8 +116,8 @@ function Hero() {
             className="max-w-xl text-base text-white/65 sm:text-lg"
           >
             We build websites, tools, and systems that help your business grow
-            and run without constant manual effort. Whatever is slowing you
-            down digitally — we identify it, build it.
+            and run without constant manual effort. Whatever is slowing you down
+            digitally — we identify it, build it.
           </motion.p>
 
           <motion.div variants={fadeUp} className="flex items-center gap-3">
@@ -128,14 +128,18 @@ function Hero() {
                 className="transition-transform group-hover:translate-x-0.5"
               />
             </Button>
-            <Button variant="outline" size="lg" className="border-white/15 bg-transparent text-white hover:bg-white/5 hover:text-white">
+            <Button
+              variant="outline"
+              size="lg"
+              className="border-white/15 bg-transparent text-white hover:bg-white/5 hover:text-white"
+            >
               Our work
             </Button>
           </motion.div>
         </motion.div>
       </div>
     </section>
-  )
+  );
 }
 
-export { Hero }
+export { Hero };
