@@ -48,7 +48,7 @@ function RotatingWord() {
         {word}
       </span>
       <motion.span
-        className="inline-flex overflow-hidden text-brand"
+        className="inline-flex overflow-hidden text-foreground"
         style={{ width: width ?? "auto" }}
         animate={width !== null ? { width } : undefined}
         transition={{ type: "spring", stiffness: 260, damping: 30 }}
@@ -91,6 +91,10 @@ function Hero() {
     <section className="min-h-svh">
       <div className="relative flex min-h-[calc(100svh)] flex-col items-center justify-center overflow-hidden rounded-3xl bg-black px-6 text-center sm:min-h-[calc(100svh)]">
         <HeroWave />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 z-6 opacity-[0.05] mix-blend-overlay bg-[url(/noise.svg)] bg-size-[240px_240px]"
+        />
         <motion.div
           variants={container}
           initial="hidden"
@@ -99,7 +103,7 @@ function Hero() {
         >
           <motion.h1
             variants={fadeUp}
-            className="text-5xl font-medium tracking-tight text-balance sm:text-7xl"
+            className="font-heading text-5xl font-medium tracking-tight text-balance sm:text-7xl"
           >
             <span className="block">
               We Build <RotatingWord />
@@ -109,7 +113,7 @@ function Hero() {
 
           <motion.p
             variants={fadeUp}
-            className="max-w-xl text-base text-muted-foreground sm:text-lg"
+            className="max-w-xl text-base text-white/65 sm:text-lg"
           >
             We build websites, tools, and systems that help your business grow
             and run without constant manual effort. Whatever is slowing you
@@ -124,8 +128,8 @@ function Hero() {
                 className="transition-transform group-hover:translate-x-0.5"
               />
             </Button>
-            <Button variant="secondary" size="lg">
-              Our projects
+            <Button variant="outline" size="lg" className="border-white/15 bg-transparent text-white hover:bg-white/5 hover:text-white">
+              Our work
             </Button>
           </motion.div>
         </motion.div>

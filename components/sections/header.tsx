@@ -15,7 +15,7 @@ import { cn } from "@/lib/utils"
 
 const NAV_LINKS = [
   { label: "About us", href: "#about" },
-  { label: "Our projects", href: "#projects" },
+  { label: "Work", href: "#projects" },
   { label: "Team", href: "#team" },
   { label: "Reviews", href: "#reviews" },
   { label: "FAQ", href: "#faq" },
@@ -64,12 +64,12 @@ function Header() {
           <span className="font-medium whitespace-nowrap">Lunar Studio</span>
         </Link>
 
-        <nav className="hidden items-center md:flex">
+        <nav className="hidden items-center rounded-full border border-white/10 bg-white/4 px-1.5 py-1 backdrop-blur-md md:flex">
           {NAV_LINKS.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="rounded-full px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+              className="rounded-full px-3 py-1.5 text-sm text-white/70 transition-colors hover:text-white"
             >
               {link.label}
             </a>
