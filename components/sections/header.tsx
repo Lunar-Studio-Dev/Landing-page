@@ -80,7 +80,7 @@ function Header() {
           ))}
         </nav>
 
-        <Button asChild className="shrink-0" variant={"brand"}>
+        <Button asChild className="shrink-0">
           <a href="#contact ">Contact us</a>
         </Button>
       </motion.div>
