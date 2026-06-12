@@ -11,6 +11,7 @@ import {
   ServiceCard,
 } from "./blueprint-grid";
 import { FigAutomations } from "./figures/fig-automations";
+import { FigBlocks } from "./figures/fig-blocks";
 import { FigPipeline } from "./figures/fig-pipeline";
 import { FigRoadmap } from "./figures/fig-roadmap";
 import { FigStack } from "./figures/fig-stack";
@@ -40,16 +41,19 @@ const SERVICES = [
 
 /*
  * Grid placements (column 1 and the last column are full-bleed gutters,
- * content lives in columns 2..N+1):
+ * content lives in columns 2..N+1). The fig/card direction alternates
+ * row by row on lg:
  *
  *   lg (3 cols)                      md (2 cols)            base (1 col)
  *   r2  title | FIG stack (2x2)      title | FIG stack      each cell its
  *   r3  intro |                      intro |                own row, figure
  *   r4  ── breathing row ──          ── breathing row ──    above its card
  *   r5  FIG automations (x2) | card  FIG automations (x2)
- *   r6  card | FIG roadmap | card    card  | FIG roadmap
- *   r7  card | FIG pipeline (x2)     card  | card
- *   r8  ── | CTA | ──                FIG pipeline | card
+ *   r6  card | FIG roadmap (x2)      card auto | card consult
+ *   r7  FIG blocks (x2) | card       FIG roadmap | FIG blocks
+ *   r8  card | FIG pipeline (x2)     card sw | card wf
+ *   r9  ── | CTA | ──                FIG pipeline (x2)
+ *                                    CTA (x2)
  */
 export default function Services() {
   return (
@@ -105,21 +109,35 @@ export default function Services() {
         <FigureCell
           once={false}
           area="7 / 2"
-          areaMd="6 / 3"
-          areaLg="6 / 3"
+          areaMd="7 / 2"
+          areaLg="6 / 3 / span 1 / span 2"
           className="min-h-[280px]"
         >
           {(animated) => (
             <FigRoadmap animated={animated} className="h-auto w-full max-w-[280px]" />
           )}
         </FigureCell>
-        <ServiceCard {...SERVICES[1]} area="8 / 2" areaMd="7 / 2" areaLg="6 / 2" />
-        <ServiceCard {...SERVICES[2]} area="9 / 2" areaMd="7 / 3" areaLg="6 / 4" />
+        <ServiceCard {...SERVICES[1]} area="8 / 2" areaMd="6 / 3" areaLg="6 / 2" />
 
         <FigureCell
-          area="10 / 2"
-          areaMd="8 / 3"
-          areaLg="7 / 3 / span 1 / span 2"
+          area="9 / 2"
+          areaMd="7 / 3"
+          areaLg="7 / 2 / span 1 / span 2"
+          className="min-h-[260px]"
+        >
+          {(animated) => (
+            <FigBlocks
+              animated={animated}
+              className="h-auto w-full max-w-[460px]"
+            />
+          )}
+        </FigureCell>
+        <ServiceCard {...SERVICES[2]} area="10 / 2" areaMd="8 / 2" areaLg="7 / 4" />
+
+        <FigureCell
+          area="11 / 2"
+          areaMd="9 / 2 / span 1 / span 2"
+          areaLg="8 / 3 / span 1 / span 2"
           className="min-h-[260px]"
         >
           {(animated) => (
@@ -129,12 +147,12 @@ export default function Services() {
             />
           )}
         </FigureCell>
-        <ServiceCard {...SERVICES[3]} area="11 / 2" areaMd="8 / 2" areaLg="7 / 2" />
+        <ServiceCard {...SERVICES[3]} area="12 / 2" areaMd="8 / 3" areaLg="8 / 2" />
 
         <GridCell
-          area="12 / 2"
-          areaMd="9 / 2 / span 1 / span 2"
-          areaLg="8 / 3"
+          area="13 / 2"
+          areaMd="10 / 2 / span 1 / span 2"
+          areaLg="9 / 3"
           className="items-center justify-center p-6"
         >
           <ArrowLink href="#contact">Book a free call</ArrowLink>
