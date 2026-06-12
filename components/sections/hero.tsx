@@ -48,7 +48,7 @@ function RotatingWord() {
         {word}
       </span>
       <motion.span
-        className="inline-flex overflow-hidden text-foreground"
+        className="-mb-[0.2em] inline-flex overflow-hidden pb-[0.2em] text-foreground"
         style={{ width: width ?? "auto" }}
         animate={width !== null ? { width } : undefined}
         transition={{ type: "spring", stiffness: 260, damping: 30 }}
@@ -106,7 +106,7 @@ function Hero() {
             className="font-heading text-5xl font-medium tracking-tight text-balance sm:text-7xl"
           >
             <span className="block">
-              We Build <br /><RotatingWord />
+              We Build <RotatingWord />
             </span>
             <span className="block">That Grow Businesses</span>
           </motion.h1>

@@ -85,7 +85,12 @@ function GridCell({
 
   return (
     <div
-      className={cn("relative flex min-h-12", CELL_AREA, CELL_SHADOW, className)}
+      className={cn(
+        "relative flex min-h-12",
+        CELL_AREA,
+        CELL_SHADOW,
+        className,
+      )}
       style={{ ...areaVars, ...style }}
       {...props}
     >
@@ -143,11 +148,18 @@ function FigureCell({
 }
 
 type ServiceCardProps = GridCellProps & {
+  label: string;
   title: string;
   body: string;
 };
 
-function ServiceCard({ title, body, className, ...props }: ServiceCardProps) {
+function ServiceCard({
+  label,
+  title,
+  body,
+  className,
+  ...props
+}: ServiceCardProps) {
   return (
     <GridCell
       className={cn(
@@ -159,6 +171,9 @@ function ServiceCard({ title, body, className, ...props }: ServiceCardProps) {
       {...props}
     >
       <div className="flex flex-col gap-3">
+        <span className="font-mono text-[12px] tracking-[0.14em] text-brand uppercase">
+          {label}
+        </span>
         <h4 className="font-heading text-2xl font-medium text-foreground">
           {title}
         </h4>
@@ -189,4 +204,11 @@ function ArrowLink({
   );
 }
 
-export { ArrowLink, BlueprintGrid, FigureCell, GridCell, GridSpacer, ServiceCard };
+export {
+  ArrowLink,
+  BlueprintGrid,
+  FigureCell,
+  GridCell,
+  GridSpacer,
+  ServiceCard,
+};

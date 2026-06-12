@@ -17,18 +17,22 @@ import { FigRoadmap } from "./figures/fig-roadmap";
 
 const SERVICES = [
   {
-    title: "Work Smarter, Not Harder",
-    body: "Free your teams from repetitive work. We design and deploy intelligent automations that reduce manual effort, minimize errors, and let your people focus on what matters most.",
-  },
-  {
-    title: "Your AI Roadmap, Built for Results",
-    body: "Not sure where AI fits in your business? We help you figure that out. Our experts assess your operations, identify high-impact opportunities, and create a clear AI roadmap tailored to your organisation.",
-  },
-  {
+    label: "Custom Software Solutions",
     title: "Software That Grows With You",
     body: "We build enterprise-grade software designed around your specific needs — scalable, secure, and built to integrate seamlessly with your existing systems.",
   },
   {
+    label: "AI Consultation",
+    title: "Your AI Roadmap, Built for Results",
+    body: "Not sure where AI fits in your business? We help you figure that out. Our experts assess your operations, identify high-impact opportunities, and create a clear AI roadmap tailored to your organisation.",
+  },
+  {
+    label: "Automations",
+    title: "Work Smarter, Not Harder",
+    body: "Free your teams from repetitive work. We design and deploy intelligent automations that reduce manual effort, minimize errors, and let your people focus on what matters most.",
+  },
+  {
+    label: "AI Workflows",
     title: "Connect Everything. Miss Nothing.",
     body: "From data processing to decision-making, we engineer end-to-end AI workflows that connect your tools, teams, and processes into one intelligent, efficient system.",
   },
@@ -60,7 +64,7 @@ export default function Services() {
         <h2 className="font-heading text-4xl font-medium tracking-tight text-foreground sm:text-5xl">
           What we do.
         </h2>
-        <p className="max-w-xl font-mono text-sm leading-relaxed tracking-[0.01em] text-muted-foreground">
+        <p className="max-w-xl leading-relaxed tracking-[0.01em] text-muted-foreground">
           We find what slows your business down — then design the automations,
           software, and AI systems that fix it for good.
         </p>
@@ -78,13 +82,18 @@ export default function Services() {
           className="min-h-[260px]"
         >
           {(animated) => (
-            <FigAutomations
+            <FigBlocks
               animated={animated}
-              className="h-auto w-full max-w-[520px]"
+              className="h-auto w-full max-w-[460px]"
             />
           )}
         </FigureCell>
-        <ServiceCard {...SERVICES[0]} area="3 / 2" areaMd="3 / 2" areaLg="2 / 4" />
+        <ServiceCard
+          {...SERVICES[0]}
+          area="3 / 2"
+          areaMd="3 / 2"
+          areaLg="2 / 4"
+        />
 
         <FigureCell
           once={false}
@@ -94,10 +103,18 @@ export default function Services() {
           className="min-h-[280px]"
         >
           {(animated) => (
-            <FigRoadmap animated={animated} className="h-auto w-full max-w-[280px]" />
+            <FigRoadmap
+              animated={animated}
+              className="h-auto w-full max-w-[280px]"
+            />
           )}
         </FigureCell>
-        <ServiceCard {...SERVICES[1]} area="5 / 2" areaMd="3 / 3" areaLg="3 / 2" />
+        <ServiceCard
+          {...SERVICES[1]}
+          area="5 / 2"
+          areaMd="3 / 3"
+          areaLg="3 / 2"
+        />
 
         <FigureCell
           area="6 / 2"
@@ -106,13 +123,18 @@ export default function Services() {
           className="min-h-[260px]"
         >
           {(animated) => (
-            <FigBlocks
+            <FigAutomations
               animated={animated}
-              className="h-auto w-full max-w-[460px]"
+              className="h-auto w-full max-w-[520px]"
             />
           )}
         </FigureCell>
-        <ServiceCard {...SERVICES[2]} area="7 / 2" areaMd="5 / 2" areaLg="4 / 4" />
+        <ServiceCard
+          {...SERVICES[2]}
+          area="7 / 2"
+          areaMd="5 / 2"
+          areaLg="4 / 4"
+        />
 
         <FigureCell
           area="8 / 2"
@@ -127,7 +149,12 @@ export default function Services() {
             />
           )}
         </FigureCell>
-        <ServiceCard {...SERVICES[3]} area="9 / 2" areaMd="5 / 3" areaLg="5 / 2" />
+        <ServiceCard
+          {...SERVICES[3]}
+          area="9 / 2"
+          areaMd="5 / 3"
+          areaLg="5 / 2"
+        />
 
         <GridCell
           area="10 / 2"
