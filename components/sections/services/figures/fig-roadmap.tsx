@@ -8,9 +8,9 @@ const EASE: [number, number, number, number] = [0.165, 0.84, 0.44, 1];
 type FigProps = React.ComponentProps<"svg"> & { animated: boolean };
 
 const MILESTONES = [
-  { x: 48, y: 276, label: "AUDIT", lx: 48, ly: 300, delay: 0.4 },
-  { x: 164, y: 188, label: "ROADMAP", lx: 188, ly: 206, delay: 0.7 },
-  { x: 192, y: 96, label: "BUILD", lx: 216, ly: 114, delay: 1.0 },
+  { x: 48, y: 276, label: "DISCOVER", lx: 48, ly: 300, delay: 0.4 },
+  { x: 164, y: 188, label: "DESIGN", lx: 188, ly: 206, delay: 0.7 },
+  { x: 192, y: 96, label: "AUTOMATE", lx: 216, ly: 114, delay: 1.0 },
 ];
 
 /**
@@ -81,7 +81,13 @@ export function FigRoadmap({ animated, ...props }: FigProps) {
           strokeWidth="0.75"
           strokeDasharray="2 2"
         />
-        <circle cx="278" cy="50" r="7" className="fill-brand/15 stroke-brand" strokeWidth="0.75" />
+        <circle
+          cx="278"
+          cy="50"
+          r="7"
+          className="fill-brand/15 stroke-brand"
+          strokeWidth="0.75"
+        />
         <circle cx="278" cy="50" r="3" className="fill-brand" />
       </motion.g>
       <motion.text
@@ -94,7 +100,7 @@ export function FigRoadmap({ animated, ...props }: FigProps) {
         animate={{ opacity: animated ? 1 : 0 }}
         transition={pop(1.4, 0.6)}
       >
-        SCALE
+        INTEGRATE
       </motion.text>
     </svg>
   );

@@ -8,29 +8,29 @@ import { cn } from "@/lib/utils";
 
 const FAQS = [
   {
-    question: "What does Lunar Studio actually build?",
+    question: "Will your solutions work with the systems we already use?",
     answer:
-      "Websites, internal tools, automations, and AI systems. If a process slows your business down — manual reporting, repetitive admin, disconnected tools — we design and build the system that removes it.",
+      "Yes. We design everything to integrate with your existing tools, platforms, and data sources — whether that's your CRM, ERP, internal databases, or third-party APIs. You won't need to rip and replace what's already working.",
   },
   {
-    question: "How fast can we launch?",
+    question: "We're new to AI — where should we even start?",
     answer:
-      "Most automation projects ship in two to four weeks. Larger custom software builds are delivered in milestones, so you see working pieces early instead of waiting months for a big reveal.",
+      "That's exactly what our AI Consultation is for. We begin with a deep dive into your current operations, identify where AI can create the most impact, and build a practical roadmap — no jargon, no guesswork, just a clear plan tailored to your business.",
   },
   {
-    question: "Do you work with non-technical teams?",
+    question: "What industries do you work with?",
     answer:
-      "Yes — most of our clients don't have an engineering team. We handle the technical side end to end and hand over systems your team can actually operate, with documentation and training included.",
+      "We've worked across a range of industries, including finance, healthcare, retail, and logistics. While the tools and use cases vary, our approach stays the same — understand your specific challenges first, then build solutions that fit.",
   },
   {
-    question: "What does a project cost?",
+    question: "Do we need an in-house AI or tech team to work with you?",
     answer:
-      "It depends on scope. After a free call we send a fixed-price proposal — no hourly billing, no surprise invoices. If we don't think automation will pay for itself, we'll tell you that too.",
+      "Not at all. We handle the technical heavy lifting from start to finish. Whether you have an internal tech team we collaborate with, or none at all, we adapt our process to fit smoothly into how your organisation operates.",
   },
   {
-    question: "Who owns the code and the systems?",
+    question: "What happens after the project is delivered?",
     answer:
-      "You do. Everything we build — code, accounts, infrastructure — is owned by you from day one. No lock-in: any developer can pick up where we left off.",
+      "We don't just hand it off and disappear. We offer ongoing support, monitoring, and optimisation to make sure your systems continue performing well and evolving alongside your business needs.",
   },
 ];
 
