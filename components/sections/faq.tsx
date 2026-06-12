@@ -67,20 +67,22 @@ function PlusMinusIcon() {
 
 export default function Faq() {
   return (
-    <section id="faq" aria-label="Frequently asked questions" className="relative py-24">
+    <section
+      id="faq"
+      aria-label="Frequently asked questions"
+      className="relative py-24"
+    >
       <div className="mx-auto grid max-w-6xl gap-12 px-6 lg:grid-cols-12 lg:gap-16">
         <div className="flex flex-col items-start gap-5 lg:col-span-5">
-          <div className="flex items-center gap-2 font-mono text-[11px] tracking-[0.14em] text-muted-foreground uppercase">
-            <span aria-hidden className="size-1 rounded-full bg-brand" />
-            FAQ
+          <div className="flex items-center gap-2  text-[11px] tracking-[0.14em] text-brand pl-1 uppercase">
+            Frequently asked
           </div>
           <h2 className="font-heading text-4xl font-medium tracking-tight text-foreground sm:text-5xl">
             Questions answered.
           </h2>
-          <p className="max-w-sm font-mono text-sm leading-relaxed tracking-[0.01em] text-muted-foreground">
+          <p className="max-w-sm text-sm leading-relaxed tracking-[0.01em] text-muted-foreground">
             Still curious about something we didn&apos;t cover?
           </p>
-          <ArrowLink href="#contact">Book a free call</ArrowLink>
         </div>
 
         <Accordion.Root
