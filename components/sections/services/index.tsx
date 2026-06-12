@@ -17,22 +17,18 @@ import { FigRoadmap } from "./figures/fig-roadmap";
 
 const SERVICES = [
   {
-    eyebrow: "AI Automations",
     title: "Work Smarter, Not Harder",
     body: "Free your teams from repetitive work. We design and deploy intelligent automations that reduce manual effort, minimize errors, and let your people focus on what matters most.",
   },
   {
-    eyebrow: "AI Consultation",
     title: "Your AI Roadmap, Built for Results",
     body: "Not sure where AI fits in your business? We help you figure that out. Our experts assess your operations, identify high-impact opportunities, and create a clear AI roadmap tailored to your organisation.",
   },
   {
-    eyebrow: "Custom Software Solutions",
     title: "Software That Grows With You",
     body: "We build enterprise-grade software designed around your specific needs — scalable, secure, and built to integrate seamlessly with your existing systems.",
   },
   {
-    eyebrow: "AI Workflows",
     title: "Connect Everything. Miss Nothing.",
     body: "From data processing to decision-making, we engineer end-to-end AI workflows that connect your tools, teams, and processes into one intelligent, efficient system.",
   },

@@ -106,7 +106,7 @@ function Hero() {
             className="font-heading text-5xl font-medium tracking-tight text-balance sm:text-7xl"
           >
             <span className="block">
-              We Build <RotatingWord />
+              We Build <br /><RotatingWord />
             </span>
             <span className="block">That Grow Businesses</span>
           </motion.h1>

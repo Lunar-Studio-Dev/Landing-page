@@ -51,7 +51,7 @@ function BlueprintGrid({
       </div>
       <div
         className={cn(
-          "grid gap-px [counter-reset:fig]",
+          "grid gap-px",
           "[--cc:1] md:[--cc:2] lg:[--cc:3]",
           "grid-cols-[1fr_repeat(var(--cc),calc(var(--gw)/var(--cc)))_1fr]",
         )}
@@ -112,8 +112,8 @@ type FigureCellProps = Omit<GridCellProps, "children"> & {
 };
 
 /**
- * Dot-matrix cell with an auto-numbered FIG_N caption. Watches its own
- * viewport intersection (60% visible) and hands `animated` to the figure.
+ * Dot-matrix figure cell. Watches its own viewport intersection
+ * (60% visible) and hands `animated` to the figure.
  */
 function FigureCell({
   once = true,
@@ -137,43 +137,28 @@ function FigureCell({
       )}
       {...props}
     >
-      <div className="absolute top-0 left-0 z-1 flex items-center bg-background px-1.5 py-1 font-mono text-[10px] font-light tracking-[0.5px] text-muted-foreground uppercase [counter-increment:fig] after:content-[counter(fig)]">
-        FIG_
-      </div>
       {children(animated)}
     </GridCell>
   );
 }
 
 type ServiceCardProps = GridCellProps & {
-  eyebrow: string;
   title: string;
   body: string;
 };
 
-function ServiceCard({
-  eyebrow,
-  title,
-  body,
-  className,
-  ...props
-}: ServiceCardProps) {
+function ServiceCard({ title, body, className, ...props }: ServiceCardProps) {
   return (
     <GridCell
       className={cn(
-        "group flex-col justify-between gap-6 p-6 transition-colors duration-150",
+        "group flex-col justify-end p-6 transition-colors duration-150",
         "hover:bg-[color-mix(in_oklab,var(--color-foreground)_3%,var(--color-background))]",
         "min-h-[260px] lg:min-h-[300px]",
         className,
       )}
       {...props}
     >
-      <ArrowUpRight className="size-4 self-end text-muted-foreground transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-foreground" />
       <div className="flex flex-col gap-3">
-        <div className="flex items-center gap-2 font-mono text-[11px] tracking-[0.14em] text-muted-foreground uppercase">
-          <span aria-hidden className="size-1 rounded-full bg-brand" />
-          {eyebrow}
-        </div>
         <h4 className="font-heading text-2xl font-medium text-foreground">
           {title}
         </h4>

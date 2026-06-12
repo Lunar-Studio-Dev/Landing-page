@@ -6,11 +6,14 @@ import * as THREE from "three"
 
 const VERTEX_SHADER = /* glsl */ `
   uniform float uTime;
+  uniform vec2 uMouse;
+  uniform float uMouseStrength;
 
   varying vec3 vNormal;
   varying vec3 vViewDir;
   varying vec2 vUv;
   varying float vHeight;
+  varying float vMouseGlow;
 
   float height(vec2 p, float t) {
     float h = 0.0;
@@ -18,6 +21,14 @@ const VERTEX_SHADER = /* glsl */ `
     h += 0.28 * sin(p.x * 0.90 - t * 0.22 + p.y * 0.65);
     h += 0.12 * sin(p.x * 1.70 + t * 0.45 + p.y * 1.30);
     h += 0.08 * sin(p.y * 2.20 - t * 0.35);
+
+    // cursor ripple: a local swell that radiates from the pointer.
+    // uMouseStrength is 0 unless the wave is interactive and hovered,
+    // so non-interactive instances are unaffected.
+    float md = distance(p, uMouse);
+    float infl = exp(-md * md * 0.30) * uMouseStrength;
+    h += infl * (0.5 * sin(md * 2.6 - t * 2.4) + 0.25);
+
     return h;
   }
 
@@ -31,6 +42,9 @@ const VERTEX_SHADER = /* glsl */ `
 
     vec3 displaced = vec3(p, h);
     vec3 n = normalize(vec3(-hx, -hy, 1.0));
+
+    float md = distance(p, uMouse);
+    vMouseGlow = exp(-md * md * 0.30) * uMouseStrength;
 
     vec4 mvPosition = modelViewMatrix * vec4(displaced, 1.0);
     vNormal = normalize(normalMatrix * n);
@@ -46,11 +60,13 @@ const FRAGMENT_SHADER = /* glsl */ `
   uniform vec3 uBase;
   uniform vec3 uBrand;
   uniform vec3 uSheen;
+  uniform float uReveal;
 
   varying vec3 vNormal;
   varying vec3 vViewDir;
   varying vec2 vUv;
   varying float vHeight;
+  varying float vMouseGlow;
 
   void main() {
     vec3 n = normalize(vNormal);
@@ -65,16 +81,20 @@ const FRAGMENT_SHADER = /* glsl */ `
     col += uSheen * pow(fres, 4.0) * 1.1;
     col += uBrand * pow(crest, 2.5) * 0.6;
 
+    // extra light pooling around the cursor
+    col += uBrand * vMouseGlow * 0.55;
+    col += uSheen * pow(vMouseGlow, 2.0) * 0.35;
+
     // melt into the page background before reaching the frame edges,
     // and keep the glow confined to a horizontal band
     float edge = smoothstep(0.0, 0.25, vUv.x) * smoothstep(1.0, 0.75, vUv.x)
                * smoothstep(0.0, 0.38, vUv.y) * smoothstep(1.0, 0.52, vUv.y);
 
-    gl_FragColor = vec4(col * edge, 1.0);
+    gl_FragColor = vec4(col * edge * uReveal, 1.0);
   }
 `
 
-function createWave(container: HTMLDivElement) {
+function createWave(container: HTMLDivElement, { idleReveal = 1 } = {}) {
   const renderer = new THREE.WebGLRenderer({
     antialias: true,
     alpha: true,
@@ -98,6 +118,9 @@ function createWave(container: HTMLDivElement) {
       uBase: { value: new THREE.Color(0.008, 0.02, 0.06) },
       uBrand: { value: new THREE.Color("#4490ff") },
       uSheen: { value: new THREE.Color(0.7, 0.85, 1.0) },
+      uMouse: { value: new THREE.Vector2(0, 0) },
+      uMouseStrength: { value: 0 },
+      uReveal: { value: idleReveal },
     },
     transparent: true,
     blending: THREE.AdditiveBlending,
@@ -118,8 +141,44 @@ function createWave(container: HTMLDivElement) {
   }
   resize()
 
+  // pointer interactivity: targets are set by events, the render loop
+  // eases the uniforms toward them so enter/move/leave all feel fluid
+  const raycaster = new THREE.Raycaster()
+  const pointerNdc = new THREE.Vector2()
+  const mouseTarget = new THREE.Vector2(0, 0)
+  let hovered = false
+  let prevTime = 0
+
+  const setPointer = (clientX: number, clientY: number) => {
+    const rect = renderer.domElement.getBoundingClientRect()
+    if (rect.width === 0 || rect.height === 0) return
+    pointerNdc.set(
+      ((clientX - rect.left) / rect.width) * 2 - 1,
+      -((clientY - rect.top) / rect.height) * 2 + 1
+    )
+    raycaster.setFromCamera(pointerNdc, camera)
+    const hit = raycaster.intersectObject(mesh)[0]
+    if (hit) {
+      const local = mesh.worldToLocal(hit.point.clone())
+      mouseTarget.set(local.x, local.y)
+    }
+  }
+
+  const setHover = (h: boolean) => {
+    hovered = h
+  }
+
   const render = (time: number) => {
-    material.uniforms.uTime.value = time
+    const dt = Math.min(Math.max(time - prevTime, 0), 0.1)
+    prevTime = time
+    const k = 1 - Math.exp(-dt * 5)
+
+    const u = material.uniforms
+    ;(u.uMouse.value as THREE.Vector2).lerp(mouseTarget, k)
+    u.uMouseStrength.value += ((hovered ? 1 : 0) - u.uMouseStrength.value) * k
+    u.uReveal.value += ((hovered ? 1 : idleReveal) - u.uReveal.value) * k
+    u.uTime.value = time
+
     renderer.render(scene, camera)
   }
 
@@ -130,10 +189,27 @@ function createWave(container: HTMLDivElement) {
     renderer.domElement.remove()
   }
 
-  return { render, resize, dispose }
+  return { render, resize, dispose, setPointer, setHover }
 }
 
-function HeroWave() {
+type HeroWaveProps = {
+  /**
+   * Reacts to the pointer: the wave brightens on enter, a ripple follows
+   * the cursor, and everything settles back on leave. Events are listened
+   * on the parent element (the wave itself is pointer-events-none).
+   */
+  interactive?: boolean
+  /** Wave intensity while not hovered (only meaningful with `interactive`). */
+  idleIntensity?: number
+  /** Entrance fade delay in seconds. */
+  appearDelay?: number
+}
+
+function HeroWave({
+  interactive = false,
+  idleIntensity = 1,
+  appearDelay = 0.9,
+}: HeroWaveProps) {
   const containerRef = React.useRef<HTMLDivElement>(null)
   const [failed, setFailed] = React.useState(false)
 
@@ -143,7 +219,9 @@ function HeroWave() {
 
     let wave: ReturnType<typeof createWave>
     try {
-      wave = createWave(container)
+      wave = createWave(container, {
+        idleReveal: interactive ? idleIntensity : 1,
+      })
     } catch {
       setFailed(true)
       return
@@ -193,14 +271,32 @@ function HeroWave() {
     const resizeObserver = new ResizeObserver(() => wave.resize())
     resizeObserver.observe(container)
 
+    // the wave div is pointer-events-none, so pointer interactivity is
+    // wired to the parent card it lives in
+    let host: HTMLElement | null = null
+    const onEnter = () => wave.setHover(true)
+    const onLeave = () => wave.setHover(false)
+    const onMove = (e: PointerEvent) => wave.setPointer(e.clientX, e.clientY)
+    if (interactive && !reduceMotion) {
+      host = container.parentElement ?? container
+      host.addEventListener("pointerenter", onEnter)
+      host.addEventListener("pointerleave", onLeave)
+      host.addEventListener("pointermove", onMove)
+    }
+
     return () => {
       cancelAnimationFrame(rafId)
       document.removeEventListener("visibilitychange", onVisibility)
       intersection.disconnect()
       resizeObserver.disconnect()
+      if (host) {
+        host.removeEventListener("pointerenter", onEnter)
+        host.removeEventListener("pointerleave", onLeave)
+        host.removeEventListener("pointermove", onMove)
+      }
       wave.dispose()
     }
-  }, [])
+  }, [interactive, idleIntensity])
 
   if (failed) {
     // no-WebGL fallback: the original static CSS glow
@@ -218,7 +314,7 @@ function HeroWave() {
       aria-hidden
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ delay: 0.9, duration: 1.4 }}
+      transition={{ delay: appearDelay, duration: 1.4 }}
       className="pointer-events-none absolute inset-0 filter-[blur(3px)]"
     />
   )
