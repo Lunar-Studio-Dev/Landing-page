@@ -21,6 +21,14 @@ const py = (u: number, v: number) => OY + VY * (v - u);
 const quad = (u0: number, v0: number, u1: number, v1: number) =>
   `M${px(u0, v0)} ${py(u0, v0)}L${px(u1, v0)} ${py(u1, v0)}L${px(u1, v1)} ${py(u1, v1)}L${px(u0, v1)} ${py(u0, v1)}Z`;
 
+// DATA plane shares the x-projection but sits 160 lower than INTERFACE
+const DATA_OY = 260;
+const pyd = (u: number, v: number) => DATA_OY + VY * (v - u);
+const quadd = (u0: number, v0: number, u1: number, v1: number) =>
+  `M${px(u0, v0)} ${pyd(u0, v0)}L${px(u1, v0)} ${pyd(u1, v0)}L${px(u1, v1)} ${pyd(u1, v1)}L${px(u0, v1)} ${pyd(u0, v1)}Z`;
+const segd = (ua: number, va: number, ub: number, vb: number) =>
+  `M${px(ua, va)} ${pyd(ua, va)}L${px(ub, vb)} ${pyd(ub, vb)}`;
+
 const NAV_ICONS = [0.14, 0.3, 0.46, 0.62];
 const CARDS: Array<[number, number]> = [
   [0.24, 0.45],
@@ -49,6 +57,124 @@ const LABELS = [
   { cy: 180, label: "LOGIC", delay: 2.4 },
   { cy: 260, label: "DATA", delay: 2.5 },
 ];
+
+type TableCfg = {
+  u0: number;
+  v0: number;
+  u1: number;
+  v1: number;
+  cols: number;
+  rows: number;
+  accent: [number, number];
+  delay: number;
+  liveRow?: number;
+};
+
+// flat database tables laid out on the DATA plane (UI coords ∈ [0,1])
+const TABLES: TableCfg[] = [
+  { u0: 0.06, v0: 0.08, u1: 0.46, v1: 0.46, cols: 3, rows: 3, accent: [1, 2], delay: 0.9 },
+  { u0: 0.54, v0: 0.08, u1: 0.94, v1: 0.4, cols: 3, rows: 2, accent: [2, 1], delay: 1.1 },
+  { u0: 0.22, v0: 0.56, u1: 0.8, v1: 0.9, cols: 5, rows: 2, accent: [3, 1], delay: 1.3, liveRow: 0 },
+];
+
+type DropFn = (delay: number, duration?: number) => Record<string, unknown>;
+
+/** A flat, iso-skewed database table: frame, header, grid lines, accent cell. */
+function DataTable({
+  cfg,
+  animated,
+  reduceMotion,
+  drop,
+}: {
+  cfg: TableCfg;
+  animated: boolean;
+  reduceMotion: boolean;
+  drop: DropFn;
+}) {
+  const { u0, v0, u1, v1, cols, rows, accent, delay, liveRow } = cfg;
+  const cw = (u1 - u0) / cols;
+  const rh = (v1 - v0) / (rows + 1); // header band + data rows
+  const rowTop = (r: number) => v0 + (r + 1) * rh; // top of data row r (0-indexed)
+
+  return (
+    <>
+      {/* frame */}
+      <motion.path
+        d={quadd(u0, v0, u1, v1)}
+        className="fill-foreground/[0.03] stroke-foreground/25"
+        strokeWidth="0.5"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: animated ? 1 : 0 }}
+        transition={drop(delay, 0.6)}
+      />
+      {/* header row */}
+      <motion.path
+        d={quadd(u0, v0, u1, v0 + rh)}
+        className="fill-foreground/10"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: animated ? 1 : 0 }}
+        transition={drop(delay + 0.1, 0.5)}
+      />
+      {/* live row highlight — a gentle "row updating" blink */}
+      {liveRow !== undefined && animated && !reduceMotion && (
+        <motion.path
+          d={quadd(u0, rowTop(liveRow), u1, rowTop(liveRow) + rh)}
+          className="fill-brand/15"
+          animate={{ opacity: [0, 0.7, 0] }}
+          transition={{
+            duration: 2.6,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: delay + 1.3,
+          }}
+        />
+      )}
+      {/* accent data cell */}
+      <motion.path
+        d={quadd(
+          u0 + accent[0] * cw,
+          rowTop(accent[1]),
+          u0 + (accent[0] + 1) * cw,
+          rowTop(accent[1]) + rh,
+        )}
+        className="fill-brand/45"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: animated ? 1 : 0 }}
+        transition={drop(delay + 0.5, 0.4)}
+      />
+      {/* column dividers */}
+      {Array.from({ length: cols - 1 }).map((_, j) => {
+        const u = u0 + (j + 1) * cw;
+        return (
+          <motion.path
+            key={`col-${j}`}
+            d={segd(u, v0, u, v1)}
+            className="stroke-foreground/15"
+            strokeWidth="0.5"
+            initial={{ pathLength: 0 }}
+            animate={{ pathLength: animated ? 1 : 0 }}
+            transition={drop(delay + 0.2, 0.5)}
+          />
+        );
+      })}
+      {/* row lines — draw in top → down */}
+      {Array.from({ length: rows }).map((_, r) => {
+        const v = v0 + (r + 1) * rh;
+        return (
+          <motion.path
+            key={`row-${r}`}
+            d={segd(u0, v, u1, v)}
+            className="stroke-foreground/15"
+            strokeWidth="0.5"
+            initial={{ pathLength: 0 }}
+            animate={{ pathLength: animated ? 1 : 0 }}
+            transition={drop(delay + 0.3 + r * 0.08, 0.45)}
+          />
+        );
+      })}
+    </>
+  );
+}
 
 /**
  * Isometric software stack — data, logic, and a live dashboard interface that
@@ -81,6 +207,17 @@ export function FigLayers({ animated, ...props }: FigProps) {
         {...fall(-44)}
         transition={drop(0.1)}
       />
+
+      {/* DATA contents — flat database tables on the plane */}
+      {TABLES.map((cfg) => (
+        <DataTable
+          key={`${cfg.u0}-${cfg.v0}`}
+          cfg={cfg}
+          animated={animated}
+          reduceMotion={Boolean(reduceMotion)}
+          drop={drop}
+        />
+      ))}
 
       {/* LOGIC — translucent blue plane */}
       <motion.path
