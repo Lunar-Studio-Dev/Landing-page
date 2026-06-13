@@ -96,7 +96,7 @@ export default function Footer() {
         <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 md:col-span-6">
           {LINK_GROUPS.map(({ heading, links }) => (
             <div key={heading} className="flex flex-col gap-3">
-              <div className="font-mono text-[11px] tracking-[0.14em] text-muted-foreground uppercase">
+              <div className="text-xs tracking-[0.14em]  font-medium">
                 {heading}
               </div>
               {links.map(({ label, href }) => (
