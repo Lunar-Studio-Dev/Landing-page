@@ -4,6 +4,7 @@ import Faq from "@/components/sections/faq"
 import Footer from "@/components/sections/footer"
 import { Hero } from "@/components/sections/hero"
 import Services from "@/components/sections/services"
+import Team from "@/components/sections/team"
 
 export default function Landing() {
     return (
@@ -11,6 +12,7 @@ export default function Landing() {
             <Hero />
             <Services />
             <Community />
+            <Team />
             <Faq />
             <Cta />
             <Footer />
