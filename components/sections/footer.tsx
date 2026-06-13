@@ -88,8 +88,8 @@ export default function Footer() {
             </span>
           </div>
           <p className="max-w-xs text-sm leading-relaxed text-muted-foreground">
-            We design the systems that run your business — automation,
-            software, and AI, built to last.
+            We design the systems that run your business — automation, software,
+            and AI, built to last.
           </p>
         </div>
 
@@ -136,12 +136,7 @@ export default function Footer() {
       <FooterWatermark text="LUNAR" />
 
       <div className="flex flex-col items-center gap-3 px-6 pb-8">
-        <p className="flex items-center gap-1.5 text-sm text-muted-foreground">
-          Crafted with
-          <Moon aria-label="moon" className="size-3.5 fill-brand text-brand" />
-          by Lunar Studio
-        </p>
-        <p className="font-mono text-[11px] tracking-[0.06em] text-muted-foreground/70">
+        <p className="text-[11px] tracking-[0.06em] text-muted-foreground/70">
           © 2026 Lunar Studio. All rights reserved.
         </p>
       </div>
