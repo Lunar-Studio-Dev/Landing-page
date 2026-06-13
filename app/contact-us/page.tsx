@@ -13,8 +13,11 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <div>
-      <section aria-label="Contact" className="relative">
-        <div className="mx-auto grid max-w-6xl gap-10 px-6 pt-28 pb-20 sm:pt-36 lg:grid-cols-12 lg:gap-16">
+      <section
+        aria-label="Contact"
+        className="relative flex min-h-svh items-center"
+      >
+        <div className="mx-auto grid w-full max-w-6xl gap-10 px-6 pt-28 pb-20 sm:pt-36 lg:grid-cols-12 lg:gap-16">
           <div className="flex flex-col gap-5 lg:col-span-5">
             <div className="flex items-center gap-2 font-mono text-[11px] tracking-[0.14em] text-muted-foreground uppercase">
               <span aria-hidden className="size-1 rounded-full bg-brand" />

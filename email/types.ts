@@ -17,4 +17,6 @@ export type ContactPayload = {
   lastName: string;
   email: string;
   reason: Reason;
+  businessName?: string;
+  description?: string;
 };

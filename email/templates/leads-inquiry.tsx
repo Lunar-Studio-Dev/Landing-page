@@ -9,18 +9,28 @@ export function LeadsInquiry({
   lastName,
   email,
   reason,
+  businessName,
+  description,
   submittedAt,
 }: {
   firstName: string;
   lastName: string;
   email: string;
   reason: string;
+  businessName?: string;
+  description?: string;
   submittedAt: string;
 }) {
   const rows: Array<[string, string]> = [
     ["Name", `${firstName} ${lastName}`],
     ["Email", email],
     ["Reason", reason],
+    ...((businessName ? [["Business", businessName]] : []) as Array<
+      [string, string]
+    >),
+    ...((description ? [["Project", description]] : []) as Array<
+      [string, string]
+    >),
     ["Submitted", submittedAt],
   ];
 

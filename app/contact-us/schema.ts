@@ -7,6 +7,8 @@ export const contactSchema = z.object({
   lastName: z.string().trim().min(1, "Last name is required").max(80),
   email: z.string().trim().email("Enter a valid email address"),
   reason: z.enum(REASONS, { message: "Please pick a reason" }),
+  businessName: z.string().trim().max(120).optional().or(z.literal("")),
+  description: z.string().trim().max(2000).optional().or(z.literal("")),
 });
 
 export type ContactValues = z.infer<typeof contactSchema>;

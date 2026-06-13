@@ -21,6 +21,8 @@ import { REASONS } from "@/email/types";
 import { submitContact } from "./actions";
 import { contactSchema, type ContactValues } from "./schema";
 
+const LABEL_CLASS = "font-sans text-sm font-medium tracking-normal text-foreground normal-case";
+
 function FieldError({ message }: { message?: string }) {
   if (!message) return null;
   return <p className="text-xs text-destructive">{message}</p>;
@@ -37,7 +39,13 @@ export function ContactForm() {
     formState: { errors, isSubmitting },
   } = useForm<ContactValues>({
     resolver: standardSchemaResolver(contactSchema),
-    defaultValues: { firstName: "", lastName: "", email: "" },
+    defaultValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      businessName: "",
+      description: "",
+    },
   });
 
   const onSubmit = async (values: ContactValues) => {
@@ -71,11 +79,11 @@ export function ContactForm() {
     <form
       onSubmit={handleSubmit(onSubmit)}
       noValidate
-      className="flex flex-col gap-5 rounded-2xl border bg-card p-6 sm:p-8"
+      className="mx-auto flex w-full max-w-xl flex-col gap-6 rounded-2xl bg-[color-mix(in_oklab,var(--color-foreground)_3%,var(--color-background))] p-6 sm:p-10"
     >
       <div className="grid gap-5 sm:grid-cols-2">
         <div className="flex flex-col gap-2">
-          <Label htmlFor="firstName">First name</Label>
+          <Label htmlFor="firstName" className={LABEL_CLASS}>First name</Label>
           <Input
             id="firstName"
             autoComplete="given-name"
@@ -85,7 +93,7 @@ export function ContactForm() {
           <FieldError message={errors.firstName?.message} />
         </div>
         <div className="flex flex-col gap-2">
-          <Label htmlFor="lastName">Last name</Label>
+          <Label htmlFor="lastName" className={LABEL_CLASS}>Last name</Label>
           <Input
             id="lastName"
             autoComplete="family-name"
@@ -97,7 +105,7 @@ export function ContactForm() {
       </div>
 
       <div className="flex flex-col gap-2">
-        <Label htmlFor="email">Email</Label>
+        <Label htmlFor="email" className={LABEL_CLASS}>Email</Label>
         <Input
           id="email"
           type="email"
@@ -109,7 +117,18 @@ export function ContactForm() {
       </div>
 
       <div className="flex flex-col gap-2">
-        <Label htmlFor="reason">Reason</Label>
+        <Label htmlFor="businessName" className={LABEL_CLASS}>Business name</Label>
+        <Input
+          id="businessName"
+          autoComplete="organization"
+          aria-invalid={!!errors.businessName}
+          {...register("businessName")}
+        />
+        <FieldError message={errors.businessName?.message} />
+      </div>
+
+      <div className="flex flex-col gap-2">
+        <Label htmlFor="reason" className={LABEL_CLASS}>Reason</Label>
         <Controller
           control={control}
           name="reason"
@@ -129,6 +148,19 @@ export function ContactForm() {
           )}
         />
         <FieldError message={errors.reason?.message} />
+      </div>
+
+      <div className="flex flex-col gap-2">
+        <Label htmlFor="description" className={LABEL_CLASS}>Tell us about your project</Label>
+        <textarea
+          id="description"
+          rows={5}
+          aria-invalid={!!errors.description}
+          placeholder="What are you trying to build, automate, or fix?"
+          className="flex min-h-[140px] w-full resize-y rounded-xl border border-input bg-transparent px-3 py-2 text-sm transition-[color,box-shadow] outline-none placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/30 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40"
+          {...register("description")}
+        />
+        <FieldError message={errors.description?.message} />
       </div>
 
       {serverError && (
