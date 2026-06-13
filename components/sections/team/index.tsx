@@ -6,19 +6,19 @@ const TEAM: TeamMember[] = [
   {
     name: "Disha Kemble",
     role: "Ready to turn ideas into reality.",
-    image: "/teams/disha.jpeg",
+    image: "/teams/disha.webp",
     socials: { x: "#", linkedin: "#", github: "#" },
   },
   {
     name: "Sagar Kemble",
     role: "Ready to create and colaborate",
-    image: "/teams/sagar.jpeg",
+    image: "/teams/sagar.webp",
     socials: { x: "#", linkedin: "#", github: "#" },
   },
   {
     name: "Barun Tiwary",
     role: "Turning ideas into impactful solutions.",
-    image: "/teams/barun.jpeg",
+    image: "/teams/barun.webp",
     socials: { x: "#", linkedin: "#", github: "#" },
   },
 ];

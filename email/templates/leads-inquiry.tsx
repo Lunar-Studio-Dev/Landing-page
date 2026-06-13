@@ -3,7 +3,7 @@ import { Column, Row, Text } from "@react-email/components";
 
 import { EmailLayout } from "./_layout";
 
-/** Leads Inquiry — the lead notification that goes to the Lunar Studio team. */
+/** Leads Inquiry - the lead notification that goes to the Lunar Studio team. */
 export function LeadsInquiry({
   firstName,
   lastName,
@@ -35,7 +35,7 @@ export function LeadsInquiry({
   ];
 
   return (
-    <EmailLayout preview={`New lead: ${firstName} ${lastName} — ${reason}`}>
+    <EmailLayout preview={`New lead: ${firstName} ${lastName} - ${reason}`}>
       <Text style={{ fontSize: "18px", color: "#ffffff", margin: "0 0 18px" }}>
         New contact submission
       </Text>

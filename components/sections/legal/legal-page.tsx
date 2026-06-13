@@ -1,4 +1,5 @@
 import * as React from "react";
+import Link from "next/link";
 
 import Footer from "@/components/sections/footer";
 
@@ -63,12 +64,12 @@ export function LegalPage({
                   <span className="font-mono text-xs text-muted-foreground/60">
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <a
+                  <Link
                     href={`#${section.id}`}
                     className="text-muted-foreground transition-colors hover:text-foreground"
                   >
                     {section.heading}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ol>

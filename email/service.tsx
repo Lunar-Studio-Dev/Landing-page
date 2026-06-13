@@ -33,12 +33,12 @@ export async function sendContactEmails(data: ContactPayload): Promise<void> {
     html: customerHtml,
   });
 
-  // 2. lead details to us — reply-to the user
+  // 2. lead details to us - reply-to the user
   await adapter.send({
     from,
     to: leadsInbox,
     replyTo: data.email,
-    subject: `New lead — ${data.firstName} ${data.lastName} · ${data.reason}`,
+    subject: `New lead - ${data.firstName} ${data.lastName} · ${data.reason}`,
     html: leadsHtml,
   });
 }

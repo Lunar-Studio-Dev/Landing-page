@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { useInView, useReducedMotion } from "motion/react";
 
@@ -188,10 +189,12 @@ function ServiceCard({
 function ArrowLink({
   className,
   children,
+  href,
   ...props
-}: React.ComponentProps<"a">) {
+}: React.ComponentProps<typeof Link>) {
   return (
-    <a
+    <Link
+      href={href}
       className={cn(
         "group/link inline-flex items-center gap-2 font-mono text-sm font-medium text-foreground",
         className,
@@ -200,7 +203,7 @@ function ArrowLink({
     >
       {children}
       <ArrowUpRight className="size-4 text-muted-foreground transition-all duration-300 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 group-hover/link:text-foreground" />
-    </a>
+    </Link>
   );
 }
 

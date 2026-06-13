@@ -39,7 +39,7 @@ export default function Page() {
           <SectionHeading
             eyebrow="Components"
             title="Buttons"
-            description="The default CTA is monochrome — it wins by contrast, not hue. The brand variant is for the one action per screen that matters most."
+            description="The default CTA is monochrome - it wins by contrast, not hue. The brand variant is for the one action per screen that matters most."
           />
           <div className="flex flex-wrap items-center gap-3">
             <Button>Download for Mac</Button>
@@ -75,7 +75,7 @@ export default function Page() {
           <SectionHeading
             eyebrow="Components"
             title="Badges"
-            description="Brand badges use the 15% alpha tint — color at text size, never a loud fill."
+            description="Brand badges use the 15% alpha tint - color at text size, never a loud fill."
           />
           <div className="flex flex-wrap items-center gap-3">
             <Badge>New</Badge>
@@ -191,7 +191,7 @@ export default function Page() {
           <SectionHeading
             eyebrow="Accent discipline"
             title="Where the blue lives"
-            description="Inline links, selection, small indicators, focus rings, and glows — roughly 2% of the pixels on any screen."
+            description="Inline links, selection, small indicators, focus rings, and glows - roughly 2% of the pixels on any screen."
           />
           <div className="grid gap-10 md:grid-cols-2">
             <div className="flex flex-col gap-6">
@@ -203,7 +203,7 @@ export default function Page() {
                 >
                   inline links are blue
                 </a>{" "}
-                so they read as interactive. Try selecting this paragraph —
+                so they read as interactive. Try selecting this paragraph -
                 text selection is the brand color too.
               </p>
               <p className="text-sm text-muted-foreground">

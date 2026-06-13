@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import dynamic from "next/dynamic";
@@ -142,18 +143,18 @@ function Hero() {
           >
             We build websites, tools, and systems that help your business grow
             and run without constant manual effort. Whatever is slowing you down
-            digitally — we identify it, build it.
+            digitally - we identify it, build it.
           </motion.p>
 
           <motion.div variants={fadeUp} className="flex items-center gap-3">
             <Button variant="brand" size="lg" asChild className="group">
-              <a href="/contact-us">
+              <Link href="/contact-us">
                 Book a free call
                 <ArrowRight
                   data-icon="inline-end"
                   className="transition-transform group-hover:translate-x-0.5"
                 />
-              </a>
+              </Link>
             </Button>
             <Button
               variant="outline"

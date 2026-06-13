@@ -9,7 +9,7 @@ import {
 
 const ORG_ID = `${SITE_URL}/#organization`;
 
-/** Organization — site-wide entity. */
+/** Organization - site-wide entity. */
 export function organizationSchema() {
   return {
     "@context": "https://schema.org",
@@ -33,7 +33,7 @@ export function organizationSchema() {
   };
 }
 
-/** WebSite — site-wide. */
+/** WebSite - site-wide. */
 export function websiteSchema() {
   return {
     "@context": "https://schema.org",
@@ -50,7 +50,7 @@ const SERVICES: Array<{ name: string; description: string }> = [
   {
     name: "Custom Software Development",
     description:
-      "Enterprise-grade custom software designed around your needs — scalable, secure, and built to integrate with your existing systems.",
+      "Enterprise-grade custom software designed around your needs - scalable, secure, and built to integrate with your existing systems.",
   },
   {
     name: "AI Automation",
@@ -74,7 +74,7 @@ const SERVICES: Array<{ name: string; description: string }> = [
   },
 ];
 
-/** ProfessionalService — the agency and its service catalog (homepage). */
+/** ProfessionalService - the agency and its service catalog (homepage). */
 export function professionalServiceSchema() {
   return {
     "@context": "https://schema.org",
@@ -105,7 +105,7 @@ export function professionalServiceSchema() {
   };
 }
 
-/** FAQPage — no longer a rich result (retired May 2026) but aids AI Overviews. */
+/** FAQPage - no longer a rich result (retired May 2026) but aids AI Overviews. */
 export function faqPageSchema() {
   return {
     "@context": "https://schema.org",

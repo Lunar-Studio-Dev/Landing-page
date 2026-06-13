@@ -3,7 +3,7 @@ import { Text } from "@react-email/components";
 
 import { EmailLayout } from "./_layout";
 
-/** Customer Query — the greeting that goes to the person who reached out. */
+/** Customer Query - the greeting that goes to the person who reached out. */
 export function CustomerQuery({
   firstName,
   reason,
@@ -40,7 +40,7 @@ export function CustomerQuery({
         details about your project.
       </Text>
       <Text style={{ fontSize: "13px", color: "#6a6b6c", margin: "26px 0 0" }}>
-        — The Lunar Studio team
+        - The Lunar Studio team
       </Text>
     </EmailLayout>
   );

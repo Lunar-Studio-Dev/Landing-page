@@ -6,7 +6,7 @@ import {
 } from "@/components/sections/legal/legal-page";
 
 export const metadata: Metadata = {
-  title: "Terms of Service — Lunar Studio",
+  title: "Terms of Service - Lunar Studio",
   description:
     "The terms that govern your use of Lunar Studio's website and services.",
 };
@@ -29,7 +29,7 @@ const SECTIONS: LegalSection[] = [
     heading: "Our Services",
     body: (
       <p>
-        Lunar Studio designs and builds digital systems — including AI
+        Lunar Studio designs and builds digital systems - including AI
         automations, AI consultation, custom software, and AI workflows. The
         specific scope, deliverables, and timeline for any engagement are
         defined in a separate proposal or statement of work agreed between you
@@ -220,7 +220,7 @@ export default function TermsOfServicePage() {
         <p>
           Welcome to <strong>Lunar Studio</strong>. These Terms set out the
           rules for using our website and the basis on which we provide our
-          services. Please read them carefully — your engagement-specific
+          services. Please read them carefully - your engagement-specific
           proposal, where one exists, takes precedence over these Terms if there
           is a conflict.
         </p>

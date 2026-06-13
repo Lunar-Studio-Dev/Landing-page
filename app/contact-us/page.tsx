@@ -7,15 +7,15 @@ import Footer from "@/components/sections/footer";
 import { ContactForm } from "./contact-form";
 
 export const metadata: Metadata = {
-  title: "Contact — Lunar Studio",
+  title: "Contact - Lunar Studio",
   description:
-    "Tell us about your project — automation, custom software, or AI workflows. We reply within a business day.",
+    "Tell us about your project - automation, custom software, or AI workflows. We reply within a business day.",
 };
 
 const STEPS = [
   "We read your message and reply within one business day.",
   "A quick call to scope the work and align on goals.",
-  "You get a clear proposal — timeline and pricing.",
+  "You get a clear proposal - timeline and pricing.",
 ];
 
 const SUPPORT_EMAIL = "team@lunarstudio.dev";

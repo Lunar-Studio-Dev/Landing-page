@@ -47,7 +47,7 @@ function Hero() {
         </div>
       </div>
 
-      {/* Bottom brand glow — large accent areas stay translucent, never opaque fills */}
+      {/* Bottom brand glow - large accent areas stay translucent, never opaque fills */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-x-0 bottom-0 h-72"

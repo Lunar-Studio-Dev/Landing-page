@@ -44,7 +44,7 @@ const SOCIALS = [
 ] as const;
 
 /**
- * A subtle team card — portrait image, name and social links overlaid on a
+ * A subtle team card - portrait image, name and social links overlaid on a
  * bottom gradient. Fades up when it scrolls into view.
  */
 export function TeamCard({

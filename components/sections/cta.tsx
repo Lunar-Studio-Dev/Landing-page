@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { motion } from "motion/react";
 import dynamic from "next/dynamic";
@@ -29,7 +30,7 @@ const fadeUp = {
 } as const;
 
 /**
- * Closing CTA — a black panel (bookending the hero) with the same WebGL
+ * Closing CTA - a black panel (bookending the hero) with the same WebGL
  * wave, here in interactive mode: it brightens on pointer enter, ripples
  * under the cursor, and settles back on leave. The top edge melts into
  * the page background via a gradient overlay (mirror of the hero's
@@ -70,13 +71,13 @@ export default function Cta() {
 
           <motion.div variants={fadeUp} className="flex items-center gap-3">
             <Button variant="brand" size="lg" asChild className="group">
-              <a href="/contact-us">
+              <Link href="/contact-us">
                 Book a free call
                 <ArrowRight
                   data-icon="inline-end"
                   className="transition-transform group-hover:translate-x-0.5"
                 />
-              </a>
+              </Link>
             </Button>
             <Button
               variant="outline"
@@ -84,7 +85,7 @@ export default function Cta() {
               asChild
               className="border-white/15 bg-transparent text-white hover:bg-white/5 hover:text-white"
             >
-              <a href="#services">See our work</a>
+              <Link href="/#services">See our work</Link>
             </Button>
           </motion.div>
         </motion.div>

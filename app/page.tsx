@@ -15,10 +15,10 @@ import {
 
 export const metadata: Metadata = {
   title: {
-    absolute: "Custom Software Development & AI Automation Agency — Lunar Studio",
+    absolute: "Lunar Studio - Ready to transform your business?",
   },
   description:
-    "Lunar Studio builds custom software, CRM systems, and end-to-end AI workflows. We automate repetitive work and ship enterprise-grade software that grows with your business.",
+    "Lunar Studio build websites, tools, and systems that help your business grow and run without constant manual effort. Whatever is slowing you down digitally we identify it, build it.",
   alternates: { canonical: "/" },
 }
 

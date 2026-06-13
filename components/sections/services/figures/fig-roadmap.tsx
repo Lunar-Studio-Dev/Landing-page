@@ -66,7 +66,7 @@ export function FigRoadmap({ animated, ...props }: FigProps) {
         </g>
       ))}
 
-      {/* destination — the only brand moment */}
+      {/* destination - the only brand moment */}
       <motion.g
         initial={{ scale: 0 }}
         animate={{ scale: animated ? 1 : 0 }}

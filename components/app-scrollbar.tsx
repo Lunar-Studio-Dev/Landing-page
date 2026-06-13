@@ -9,7 +9,7 @@ const HIDE_DELAY = 900;
 const MIN_THUMB = 32;
 
 /**
- * Custom overlay scrollbar that rides the document scroll — identical in look
+ * Custom overlay scrollbar that rides the document scroll - identical in look
  * to the previous Radix scrollbar (thin, brand-blue rounded thumb, auto-hides
  * while idle). It reads `window` scroll (which Lenis drives) and scrubs through
  * Lenis when dragged.

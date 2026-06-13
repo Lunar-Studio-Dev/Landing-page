@@ -57,7 +57,7 @@
  * instead of pure grey so they harmonize with the brand blue.
  *
  * Rules:
- *  - `primary` stays monochrome (near-black on light, white on dark) —
+ *  - `primary` stays monochrome (near-black on light, white on dark) -
  *    the CTA wins by contrast, not hue.
  *  - `brand` is reserved for inline links, text selection, highlighted
  *    words, small active indicators, focus rings, and low-opacity glows.

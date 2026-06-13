@@ -34,7 +34,7 @@ const JUNCTIONS = [
   { cx: 349, cy: 140, delay: 1.4 },
 ];
 
-// Three dots stream in — one from each input box to the AI node — where they
+// Three dots stream in - one from each input box to the AI node - where they
 // are consumed; the forward dot then emerges from the node and continues to
 // an outcome, alternating between the two each cycle.
 const INPUT_ROUTES = [
@@ -96,7 +96,7 @@ function ForwardPulse() {
 /**
  * End-to-end workflow as a named, layered process map: data sources, tools,
  * and teams funnel into one AI processing core which fans out to decisions
- * and actions — connections draw in, junction indicators pop, and a pulse
+ * and actions - connections draw in, junction indicators pop, and a pulse
  * runs the full route.
  */
 export function FigPipeline({ animated, ...props }: FigProps) {
@@ -106,7 +106,7 @@ export function FigPipeline({ animated, ...props }: FigProps) {
 
   return (
     <svg viewBox="0 0 620 260" fill="none" aria-hidden {...props}>
-      {/* input cells — named */}
+      {/* input cells - named */}
       {INPUTS.map(({ label, cy }, i) => (
         <motion.g
           key={label}
@@ -172,7 +172,7 @@ export function FigPipeline({ animated, ...props }: FigProps) {
           className="fill-brand/10 stroke-brand/40"
           strokeWidth="1"
         />
-        {/* bot — the AI glyph */}
+        {/* bot - the AI glyph */}
         <g
           transform="translate(315 130) scale(1.7) translate(-12 -12)"
           className="stroke-brand"
@@ -190,7 +190,7 @@ export function FigPipeline({ animated, ...props }: FigProps) {
         </g>
       </motion.g>
 
-      {/* outcome cells — named */}
+      {/* outcome cells - named */}
       {OUTPUTS.map(({ label, cy }, i) => (
         <motion.g
           key={label}

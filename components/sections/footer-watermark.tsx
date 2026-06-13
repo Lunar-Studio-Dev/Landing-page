@@ -11,7 +11,7 @@ const MASK =
   "radial-gradient(circle 240px at var(--x, 50%) var(--y, 50%), #000 0%, transparent 70%)";
 
 /**
- * Resend-style brand watermark — a giant, near-invisible wordmark that a soft
+ * Resend-style brand watermark - a giant, near-invisible wordmark that a soft
  * spotlight reveals under the cursor. A dim base layer is always shown; a
  * brighter copy is masked to a disc that follows the pointer (eased for a
  * liquid trail) and fades out when the pointer leaves.
@@ -72,7 +72,7 @@ export function FooterWatermark({ text = "LUNAR" }: { text?: string }) {
 
   return (
     <div ref={hostRef} aria-hidden className="relative mt-10 select-none">
-      {/* dim base — barely visible */}
+      {/* dim base - barely visible */}
       <div
         className={cn(
           "bg-gradient-to-b from-foreground/[0.07] to-foreground/0",
@@ -81,7 +81,7 @@ export function FooterWatermark({ text = "LUNAR" }: { text?: string }) {
       >
         {text}
       </div>
-      {/* spotlight — brighter copy, masked to a disc that follows the cursor */}
+      {/* spotlight - brighter copy, masked to a disc that follows the cursor */}
       <div
         ref={spotRef}
         className={cn(

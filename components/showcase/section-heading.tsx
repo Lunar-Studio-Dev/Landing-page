@@ -13,7 +13,7 @@ function SectionHeading({
 }) {
   return (
     <div className={cn("flex max-w-xl flex-col gap-2", className)}>
-      {/* Eyebrows stay grey monospace uppercase — never the brand color */}
+      {/* Eyebrows stay grey monospace uppercase - never the brand color */}
       <p className="font-mono text-sm font-medium tracking-wide text-muted-foreground uppercase">
         {eyebrow}
       </p>

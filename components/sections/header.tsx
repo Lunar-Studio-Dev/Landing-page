@@ -13,7 +13,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
-  { label: "Services", href: "/#services" },
+  { label: "Services", href: "#services" },
   // { label: "Work", href: "/#projects" },
   { label: "Reviews", href: "/#community" },
   { label: "Team", href: "/#team" },
@@ -35,7 +35,7 @@ function Header() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 flex justify-center px-3 sm:px-4">
       <motion.div
-        initial={reduceMotion ? false : { y: -16, opacity: 0 }}
+        initial={reduceMotion ? false : { y: -16, opacity: 0, maxWidth: 1232 }}
         animate={{
           y: 0,
           opacity: 1,

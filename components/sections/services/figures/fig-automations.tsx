@@ -160,7 +160,7 @@ export function FigAutomations({ animated, ...props }: FigProps) {
         </text>
       </motion.g>
 
-      {/* pulse — streams from each task box in turn */}
+      {/* pulse - streams from each task box in turn */}
       {animated && !reduceMotion && (
         <motion.circle
           key={active}

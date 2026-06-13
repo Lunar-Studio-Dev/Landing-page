@@ -30,7 +30,7 @@ export function FigLayers({ animated, ...props }: FigProps) {
 
   return (
     <svg viewBox="0 0 520 380" fill="none" aria-hidden {...props}>
-      {/* bottom plane — data layer */}
+      {/* bottom plane - data layer */}
       <motion.g
         initial={{ y: -37 }}
         animate={{ y: animated ? 0 : -37 }}
@@ -44,7 +44,7 @@ export function FigLayers({ animated, ...props }: FigProps) {
         />
       </motion.g>
 
-      {/* middle plane — the brand-tinted focus layer */}
+      {/* middle plane - the brand-tinted focus layer */}
       <motion.g
         initial={{ y: 12, x: 2 }}
         animate={animated ? { y: 0, x: 0 } : { y: 12, x: 2 }}
@@ -57,7 +57,7 @@ export function FigLayers({ animated, ...props }: FigProps) {
         />
       </motion.g>
 
-      {/* top plane — interface layer with list rows */}
+      {/* top plane - interface layer with list rows */}
       <motion.g
         initial={{ y: 55 }}
         animate={{ y: animated ? 0 : 55 }}
@@ -74,7 +74,7 @@ export function FigLayers({ animated, ...props }: FigProps) {
           className="fill-foreground/5 stroke-foreground/30"
           strokeWidth="0.75"
         />
-        {/* list rows — first row selected */}
+        {/* list rows - first row selected */}
         <path
           d="M180 95l110 50-13 6-110-50z"
           className="fill-brand/15 stroke-brand/40"

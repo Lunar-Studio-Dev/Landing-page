@@ -19,7 +19,7 @@ const SERVICES = [
   {
     label: "Custom Software Solutions",
     title: "Software That Grows With You",
-    body: "We build enterprise-grade software designed around your specific needs — scalable, secure, and built to integrate seamlessly with your existing systems.",
+    body: "We build enterprise-grade software designed around your specific needs - scalable, secure, and built to integrate seamlessly with your existing systems.",
   },
   {
     label: "AI Consultation",
@@ -65,7 +65,7 @@ export default function Services() {
           What we do.
         </h2>
         <p className="max-w-xl leading-relaxed tracking-[0.01em] text-muted-foreground">
-          We find what slows your business down — then design the automations,
+          We find what slows your business down - then design the automations,
           software, and AI systems that fix it for good.
         </p>
       </div>

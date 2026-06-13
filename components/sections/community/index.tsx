@@ -6,7 +6,7 @@ import { TweetCard } from "./tweet";
 import { TWEETS } from "./tweets-data";
 
 /**
- * Community Support — a masonry wall of real tweets. CSS multi-columns
+ * Community Support - a masonry wall of real tweets. CSS multi-columns
  * give the variable-height flow (cards keep their natural height and
  * break-inside-avoid keeps each one intact); the bottom of the wall
  * dissolves into the page background.

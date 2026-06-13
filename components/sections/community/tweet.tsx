@@ -31,7 +31,7 @@ type TweetCardProps = Tweet & {
 };
 
 /**
- * Variable-height tweet card — the height follows the comment naturally,
+ * Variable-height tweet card - the height follows the comment naturally,
  * so it slots into a masonry column flow. Fades up slightly when it
  * scrolls into view.
  */
