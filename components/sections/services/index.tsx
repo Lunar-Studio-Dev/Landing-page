@@ -162,7 +162,7 @@ export default function Services() {
           areaLg="6 / 3"
           className="items-center justify-center p-6"
         >
-          <ArrowLink href="#contact">Book a free call</ArrowLink>
+          <ArrowLink href="/contact-us">Book a free call</ArrowLink>
         </GridCell>
 
         {Array.from({ length: 20 }).map((_, i) => (

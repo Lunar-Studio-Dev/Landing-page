@@ -1,6 +1,8 @@
 import * as React from "react";
 import { Moon } from "lucide-react";
 
+import { FooterWatermark } from "./footer-watermark";
+
 type IconProps = React.ComponentProps<"svg">;
 
 function XIcon(props: IconProps) {
@@ -53,7 +55,7 @@ const LINK_GROUPS = [
       { label: "About us", href: "#" },
       { label: "Community", href: "#community" },
       { label: "FAQ", href: "#faq" },
-      { label: "Contact", href: "#contact" },
+      { label: "Contact", href: "/contact-us" },
     ],
   },
   {
@@ -129,12 +131,8 @@ export default function Footer() {
 
       <div className="mx-auto mt-14 max-w-6xl border-t px-6" />
 
-      {/* watermark */}
-      <div aria-hidden className="pointer-events-none mt-10 select-none">
-        <div className="bg-gradient-to-b from-foreground/10 to-foreground/0 bg-clip-text text-center font-heading text-[clamp(5rem,18vw,15rem)] leading-[0.9] font-bold tracking-tight text-transparent">
-          LUNAR
-        </div>
-      </div>
+      {/* interactive brand watermark */}
+      <FooterWatermark text="LUNAR" />
 
       <div className="flex flex-col items-center gap-3 px-6 pb-8">
         <p className="flex items-center gap-1.5 text-sm text-muted-foreground">

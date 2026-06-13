@@ -81,7 +81,7 @@ function Header() {
         </nav>
 
         <Button asChild className="shrink-0">
-          <a href="#contact ">Contact us</a>
+          <a href="/contact-us">Contact us</a>
         </Button>
       </motion.div>
     </header>

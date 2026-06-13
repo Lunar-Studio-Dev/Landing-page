@@ -59,12 +59,14 @@ export default function Cta() {
           </motion.p>
 
           <motion.div variants={fadeUp} className="flex items-center gap-3">
-            <Button variant="brand" size="lg" className="group">
-              Book a free call
-              <ArrowRight
-                data-icon="inline-end"
-                className="transition-transform group-hover:translate-x-0.5"
-              />
+            <Button variant="brand" size="lg" asChild className="group">
+              <a href="/contact-us">
+                Book a free call
+                <ArrowRight
+                  data-icon="inline-end"
+                  className="transition-transform group-hover:translate-x-0.5"
+                />
+              </a>
             </Button>
             <Button
               variant="outline"
