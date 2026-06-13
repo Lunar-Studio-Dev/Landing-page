@@ -1,4 +1,4 @@
-import { Geist_Mono, Inter } from "next/font/google"
+import { Geist_Mono, Inter, Noto_Serif } from "next/font/google"
 
 import "lenis/dist/lenis.css"
 import "./globals.css"
@@ -15,6 +15,13 @@ const fontMono = Geist_Mono({
   variable: "--font-mono",
 })
 
+const notoSerif = Noto_Serif({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-serif",
+})
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -24,7 +31,13 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={cn("antialiased", fontMono.variable, "font-sans", inter.variable)}
+      className={cn(
+        "antialiased",
+        fontMono.variable,
+        "font-sans",
+        inter.variable,
+        notoSerif.variable,
+      )}
     >
       <head>
         <link

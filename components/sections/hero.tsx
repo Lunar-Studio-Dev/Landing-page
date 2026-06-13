@@ -15,6 +15,25 @@ const HeroWave = dynamic(
 const ROTATING_WORDS = ["solutions", "workflows", "automations"];
 const ROTATE_INTERVAL_MS = 2600;
 
+/**
+ * Noto Serif italic glues f→l into a single ligature glyph even with
+ * font-variant-ligatures:none, so we render the word in segments and
+ * inject a hairline spacer between any "fl" pair.
+ */
+function renderWord(word: string) {
+  const parts = word.split(/(fl)/g);
+  return parts.map((part, i) => {
+    if (part === "fl") {
+      return (
+        <React.Fragment key={i}>
+          f<span className="inline-block w-[0.09em]" aria-hidden />l
+        </React.Fragment>
+      );
+    }
+    return <React.Fragment key={i}>{part}</React.Fragment>;
+  });
+}
+
 function RotatingWord() {
   const [index, setIndex] = React.useState(0);
   const [width, setWidth] = React.useState<number | null>(null);
@@ -43,9 +62,9 @@ function RotatingWord() {
       <span
         ref={measureRef}
         aria-hidden
-        className="invisible absolute font-serif whitespace-pre italic"
+        className="invisible absolute font-serif whitespace-pre italic [font-variant-ligatures:none]"
       >
-        {word}
+        {renderWord(word)}
       </span>
       <motion.span
         className="-mb-[0.2em] inline-flex overflow-hidden pb-[0.2em] text-foreground"
@@ -56,13 +75,13 @@ function RotatingWord() {
         <AnimatePresence mode="wait" initial={false}>
           <motion.span
             key={word}
-            className="font-serif whitespace-pre italic"
+            className="font-serif whitespace-pre italic [font-variant-ligatures:none]"
             initial={reduceMotion ? { opacity: 0 } : { y: "100%", opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={reduceMotion ? { opacity: 0 } : { y: "-100%", opacity: 0 }}
             transition={{ type: "spring", stiffness: 320, damping: 32 }}
           >
-            {word}
+            {renderWord(word)}
           </motion.span>
         </AnimatePresence>
       </motion.span>
