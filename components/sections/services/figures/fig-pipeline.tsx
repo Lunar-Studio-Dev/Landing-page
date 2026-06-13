@@ -7,39 +7,70 @@ const EASE: [number, number, number, number] = [0.165, 0.84, 0.44, 1];
 
 type FigProps = React.ComponentProps<"svg"> & { animated: boolean };
 
-const TOOLS = [
-  { x: 48, y: 40 },
-  { x: 48, y: 104 },
-  { x: 48, y: 168 },
+const INPUTS = [
+  { label: "Data sources", cy: 50 },
+  { label: "Your tools", cy: 130 },
+  { label: "Your teams", cy: 210 },
 ];
 
 const OUTPUTS = [
-  { x: 456, y: 56 },
-  { x: 456, y: 152 },
+  { label: "Decisions", cy: 80 },
+  { label: "Actions", cy: 180 },
 ];
 
 const LINES = [
-  "M80 56C160 56 200 100 252 108",
-  "M80 120L252 120",
-  "M80 184C160 184 200 140 252 132",
-  "M308 108C360 100 400 72 456 72",
-  "M308 132C360 140 400 168 456 168",
+  "M140 50C190 50 205 118 281 118",
+  "M140 130L281 130",
+  "M140 210C190 210 205 142 281 142",
+  "M349 120C420 120 435 80 470 80",
+  "M349 140C420 140 435 180 470 180",
 ];
 
 const JUNCTIONS = [
-  { cx: 252, cy: 108, delay: 1.0 },
-  { cx: 252, cy: 120, delay: 1.1 },
-  { cx: 252, cy: 132, delay: 1.2 },
-  { cx: 308, cy: 108, delay: 1.3 },
-  { cx: 308, cy: 132, delay: 1.4 },
+  { cx: 281, cy: 118, delay: 1.0 },
+  { cx: 281, cy: 130, delay: 1.1 },
+  { cx: 281, cy: 142, delay: 1.2 },
+  { cx: 349, cy: 120, delay: 1.3 },
+  { cx: 349, cy: 140, delay: 1.4 },
 ];
 
-const PULSE_PATH = "M80 120L300 120C360 112 400 72 452 72";
+// The pulse alternates between the two outcome routes each cycle. Each route
+// runs input → AI node → outcome; the middle segment (281→349) crosses the
+// node and is hidden via the opacity keyframes, so the dot reads as
+// "consumed and processed" rather than gliding across the box.
+const PULSE_ROUTES = [
+  "M140 130L281 128L349 122C420 120 435 80 470 80",
+  "M140 130L281 132L349 138C420 140 435 180 470 180",
+];
+
+function PipelinePulse() {
+  const [route, setRoute] = React.useState(0);
+  return (
+    <motion.circle
+      key={route}
+      r="3"
+      className="fill-brand"
+      style={{ offsetPath: `path("${PULSE_ROUTES[route]}")` }}
+      initial={{ offsetDistance: "0%", opacity: 0 }}
+      animate={{
+        offsetDistance: ["0%", "6%", "40%", "44%", "58%", "62%", "94%", "100%"],
+        opacity: [0, 1, 1, 0, 0, 1, 1, 0],
+      }}
+      transition={{
+        duration: 2.4,
+        ease: "linear",
+        times: [0, 0.06, 0.4, 0.44, 0.58, 0.62, 0.94, 1],
+      }}
+      onAnimationComplete={() => setRoute((r) => (r + 1) % PULSE_ROUTES.length)}
+    />
+  );
+}
 
 /**
- * End-to-end workflow: disconnected tools wire themselves into one AI core
- * which fans out to the teams that need it — connections draw in, junction
- * indicators pop, and a pulse runs the full route.
+ * End-to-end workflow as a named, layered process map: data sources, tools,
+ * and teams funnel into one AI processing core which fans out to decisions
+ * and actions — connections draw in, junction indicators pop, and a pulse
+ * runs the full route.
  */
 export function FigPipeline({ animated, ...props }: FigProps) {
   const reduceMotion = useReducedMotion();
@@ -47,11 +78,11 @@ export function FigPipeline({ animated, ...props }: FigProps) {
     reduceMotion ? { duration: 0 } : { duration, ease: EASE, delay };
 
   return (
-    <svg viewBox="0 0 560 240" fill="none" aria-hidden {...props}>
-      {/* tool nodes */}
-      {TOOLS.map(({ x, y }, i) => (
+    <svg viewBox="0 0 620 260" fill="none" aria-hidden {...props}>
+      {/* input cells — named */}
+      {INPUTS.map(({ label, cy }, i) => (
         <motion.g
-          key={`tool-${y}`}
+          key={label}
           initial={{ opacity: 0, scale: 0.8 }}
           animate={
             animated ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }
@@ -60,33 +91,26 @@ export function FigPipeline({ animated, ...props }: FigProps) {
           style={{ transformBox: "fill-box", transformOrigin: "center" }}
         >
           <rect
-            x={x}
-            y={y}
-            width="32"
-            height="32"
+            x="20"
+            y={cy - 17}
+            width="120"
+            height="34"
             rx="8"
             className="fill-background stroke-foreground/30"
             strokeWidth="0.75"
             strokeDasharray="3 1.5"
           />
-          <line
-            x1={x + 10}
-            y1={y + 13}
-            x2={x + 22}
-            y2={y + 13}
-            className="stroke-foreground/25"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-          />
-          <line
-            x1={x + 10}
-            y1={y + 19}
-            x2={x + 17}
-            y2={y + 19}
-            className="stroke-foreground/20"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-          />
+          <text
+            x="80"
+            y={cy}
+            textAnchor="middle"
+            dominantBaseline="central"
+            fontSize="11"
+            letterSpacing="0.02em"
+            className="fill-foreground/80 font-mono"
+          >
+            {label}
+          </text>
         </motion.g>
       ))}
 
@@ -103,7 +127,7 @@ export function FigPipeline({ animated, ...props }: FigProps) {
         />
       ))}
 
-      {/* the AI core */}
+      {/* the AI processing core */}
       <motion.g
         initial={{ opacity: 0, scale: 0.6 }}
         animate={
@@ -113,49 +137,65 @@ export function FigPipeline({ animated, ...props }: FigProps) {
         style={{ transformBox: "fill-box", transformOrigin: "center" }}
       >
         <rect
-          x="252"
-          y="92"
-          width="56"
-          height="56"
+          x="283"
+          y="98"
+          width="64"
+          height="64"
           rx="10"
           className="fill-brand/10 stroke-brand/40"
           strokeWidth="1"
         />
-        {[
-          [272, 112],
-          [288, 112],
-          [272, 128],
-          [288, 128],
-        ].map(([cx, cy]) => (
-          <circle
-            key={`${cx}-${cy}`}
-            cx={cx}
-            cy={cy}
-            r="1.5"
-            className="fill-brand/60"
-          />
-        ))}
+        {/* bot — the AI glyph */}
+        <g
+          transform="translate(315 130) scale(1.7) translate(-12 -12)"
+          className="stroke-brand"
+          strokeWidth="1.4"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          fill="none"
+        >
+          <path d="M12 8V4H8" />
+          <rect width="16" height="12" x="4" y="8" rx="2" />
+          <path d="M2 14h2" />
+          <path d="M20 14h2" />
+          <path d="M15 13v2" />
+          <path d="M9 13v2" />
+        </g>
       </motion.g>
 
-      {/* destination nodes */}
-      {OUTPUTS.map(({ x, y }, i) => (
-        <motion.rect
-          key={`out-${y}`}
-          x={x}
-          y={y}
-          width="32"
-          height="32"
-          rx="8"
-          className="fill-background stroke-foreground/30"
-          strokeWidth="0.75"
-          strokeDasharray="3 1.5"
+      {/* outcome cells — named */}
+      {OUTPUTS.map(({ label, cy }, i) => (
+        <motion.g
+          key={label}
           initial={{ opacity: 0, scale: 0.8 }}
           animate={
             animated ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }
           }
           transition={t(1.1 + i * 0.15, 0.5)}
           style={{ transformBox: "fill-box", transformOrigin: "center" }}
-        />
+        >
+          <rect
+            x="470"
+            y={cy - 17}
+            width="110"
+            height="34"
+            rx="8"
+            className="fill-background stroke-foreground/30"
+            strokeWidth="0.75"
+            strokeDasharray="3 1.5"
+          />
+          <text
+            x="525"
+            y={cy}
+            textAnchor="middle"
+            dominantBaseline="central"
+            fontSize="11"
+            letterSpacing="0.02em"
+            className="fill-foreground/80 font-mono"
+          >
+            {label}
+          </text>
+        </motion.g>
       ))}
 
       {/* junction indicators */}
@@ -173,36 +213,23 @@ export function FigPipeline({ animated, ...props }: FigProps) {
         />
       ))}
 
-      {/* labels */}
-      {(
-        [
-          { x: 48, y: 216, label: "TOOLS", anchor: "start" },
-          { x: 280, y: 166, label: "AI CORE", anchor: "middle" },
-          { x: 488, y: 204, label: "TEAMS", anchor: "end" },
-        ] as const
-      ).map(({ x, y, label, anchor }) => (
-        <motion.text
-          key={label}
-          x={x}
-          y={y}
-          fontSize="9"
-          letterSpacing="0.08em"
-          textAnchor={anchor}
-          className="fill-muted-foreground font-mono"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: animated ? 1 : 0 }}
-          transition={t(1.5, 0.6)}
-        >
-          {label}
-        </motion.text>
-      ))}
+      {/* outcome caption */}
+      <motion.text
+        x="525"
+        y="232"
+        textAnchor="middle"
+        fontSize="9"
+        letterSpacing="0.06em"
+        className="fill-muted-foreground font-mono"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: animated ? 1 : 0 }}
+        transition={t(1.5, 0.6)}
+      >
+        One efficient, intelligent system
+      </motion.text>
 
-      {/* pulse across the full route */}
-      {animated && !reduceMotion && (
-        <circle r="3" className="fill-brand">
-          <animateMotion dur="3s" repeatCount="indefinite" path={PULSE_PATH} />
-        </circle>
-      )}
+      {/* pulse — alternates between the two outcome routes, hidden over the node */}
+      {animated && !reduceMotion && <PipelinePulse />}
     </svg>
   );
 }
