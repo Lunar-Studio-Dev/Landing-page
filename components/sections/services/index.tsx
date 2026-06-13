@@ -11,7 +11,7 @@ import {
   ServiceCard,
 } from "./blueprint-grid";
 import { FigAutomations } from "./figures/fig-automations";
-import { FigBlocks } from "./figures/fig-blocks";
+import { FigLayers } from "./figures/fig-layers";
 import { FigPipeline } from "./figures/fig-pipeline";
 import { FigRoadmap } from "./figures/fig-roadmap";
 
@@ -82,9 +82,9 @@ export default function Services() {
           className="min-h-[260px]"
         >
           {(animated) => (
-            <FigBlocks
+            <FigLayers
               animated={animated}
-              className="h-auto w-full max-w-[460px]"
+              className="h-auto w-full max-w-[400px]"
             />
           )}
         </FigureCell>
