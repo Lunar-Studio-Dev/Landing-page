@@ -13,10 +13,10 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
-  // { label: "About us", href: "#about" },
+  { label: "Services", href: "#services" },
   // { label: "Work", href: "/#projects" },
-  { label: "Team", href: "/#team" },
   { label: "Reviews", href: "/#community" },
+  { label: "Team", href: "/#team" },
   { label: "FAQ", href: "/#faq" },
 ];
 
