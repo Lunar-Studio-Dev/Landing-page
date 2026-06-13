@@ -59,7 +59,11 @@ function LinkedinIcon(props: IconProps) {
 }
 
 const SOCIALS = [
-  { label: "Instagram", href: "https://instagram.com/lunarstudio.hq", Icon: InstagramIcon },
+  {
+    label: "Instagram",
+    href: "https://instagram.com/lunarstudio.hq",
+    Icon: InstagramIcon,
+  },
   { label: "Twitter", href: "https://x.com", Icon: XIcon },
   { label: "LinkedIn", href: "https://linkedin.com", Icon: LinkedinIcon },
 ];
@@ -82,13 +86,13 @@ export default function ContactPage() {
             </h1>
             <p className="max-w-sm leading-relaxed tracking-[0.01em] text-muted-foreground">
               Tell us a bit about your project and we&apos;ll get back to you
-              within one business day. No commitment, no spam.
+              within one business day.
             </p>
 
             {/* what happens next */}
             <div className="mt-6 flex flex-col gap-5">
-              <div className="font-mono text-[11px] tracking-[0.14em] text-muted-foreground uppercase">
-                What happens next
+              <div className="text-xs tracking-[0.14em] ">
+                What happens next ?
               </div>
               <ol className="flex flex-col gap-5">
                 {STEPS.map((step, i) => (
