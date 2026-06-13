@@ -132,7 +132,7 @@ export default function Footer() {
       <div className="mx-auto mt-14 max-w-6xl border-t px-6" />
 
       {/* interactive brand watermark */}
-      <FooterWatermark text="LUNAR" />
+      <FooterWatermark text="Lunar Studio" />
 
       <div className="flex flex-col items-center gap-3 px-6 pb-8">
         <p className="text-[11px] tracking-[0.06em] text-muted-foreground/70">
