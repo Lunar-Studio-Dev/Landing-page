@@ -1,8 +1,10 @@
-import { Geist, Geist_Mono, Inter } from "next/font/google"
+import { Geist_Mono, Inter } from "next/font/google"
 
+import "lenis/dist/lenis.css"
 import "./globals.css"
-import { AppScrollArea, AppScrollProvider } from "@/components/app-scroll"
+import { AppScrollbar } from "@/components/app-scrollbar"
 import { Header } from "@/components/sections/header"
+import { SmoothScroll } from "@/components/smooth-scroll"
 import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@/lib/utils";
 
@@ -30,12 +32,13 @@ export default function RootLayout({
           href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap"
         />
       </head>
-      <body className="h-svh overflow-hidden">
+      <body>
         <ThemeProvider>
-          <AppScrollProvider>
+          <SmoothScroll>
             <Header />
-            <AppScrollArea>{children}</AppScrollArea>
-          </AppScrollProvider>
+            {children}
+            <AppScrollbar />
+          </SmoothScroll>
         </ThemeProvider>
       </body>
     </html>

@@ -158,6 +158,11 @@
     }
   html {
     @apply font-sans;
+    scroll-padding-top: 6rem;
+    scrollbar-width: none;
+    }
+  html::-webkit-scrollbar {
+    display: none;
     }
   ::selection {
     background: var(--brand);

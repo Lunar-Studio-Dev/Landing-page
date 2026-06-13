@@ -9,7 +9,6 @@ import {
   useScroll,
 } from "motion/react";
 
-import { useAppScrollViewport } from "@/components/app-scroll";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -25,9 +24,8 @@ const SCROLL_THRESHOLD = 80;
 
 function Header() {
   const [scrolled, setScrolled] = React.useState(false);
-  const viewportRef = useAppScrollViewport();
-  // the app scrolls inside the ScrollArea viewport, not the window
-  const { scrollY } = useScroll({ container: viewportRef ?? undefined });
+  // the document scrolls (Lenis drives window scroll), so read window scrollY
+  const { scrollY } = useScroll();
   const reduceMotion = useReducedMotion();
 
   useMotionValueEvent(scrollY, "change", (y) => {
