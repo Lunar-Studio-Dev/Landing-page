@@ -89,7 +89,7 @@ export default function Faq() {
           type="single"
           collapsible
           defaultValue="faq-0"
-          className="divide-y divide-border overflow-hidden rounded-2xl border bg-card lg:col-span-7"
+          className="divide-y divide-border/40 overflow-hidden rounded-2xl bg-[color-mix(in_oklab,var(--color-foreground)_3%,var(--color-background))] lg:col-span-7"
         >
           {FAQS.map(({ question, answer }, i) => (
             <Accordion.Item key={question} value={`faq-${i}`}>
@@ -97,12 +97,9 @@ export default function Faq() {
                 <Accordion.Trigger
                   className={cn(
                     "group flex w-full items-center gap-4 p-5 text-left transition-colors duration-150",
-                    "hover:bg-[color-mix(in_oklab,var(--color-foreground)_3%,var(--color-card))]",
+                    "hover:bg-[color-mix(in_oklab,var(--color-foreground)_5%,var(--color-background))]",
                   )}
                 >
-                  <span className="w-6 shrink-0 font-mono text-[11px] text-muted-foreground">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
                   <span className="flex-1 text-sm font-medium text-foreground sm:text-base">
                     {question}
                   </span>
@@ -117,7 +114,7 @@ export default function Faq() {
                 </Accordion.Trigger>
               </Accordion.Header>
               <Accordion.Content className="overflow-hidden data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
-                <p className="px-5 pt-0 pb-5 pl-15 text-sm leading-relaxed text-muted-foreground">
+                <p className="px-5 pt-0 pb-5 text-sm leading-relaxed text-muted-foreground">
                   {answer}
                 </p>
               </Accordion.Content>

@@ -88,8 +88,7 @@ export default function Footer() {
             </span>
           </div>
           <p className="max-w-xs text-sm leading-relaxed text-muted-foreground">
-            We design the systems that run your business — automation, software,
-            and AI, built to last.
+            We Build solutions , automations ,workflows that grow businesses
           </p>
         </div>
 
