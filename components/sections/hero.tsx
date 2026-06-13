@@ -89,11 +89,17 @@ const fadeUp = {
 function Hero() {
   return (
     <section className="min-h-svh">
-      <div className="relative flex min-h-[calc(100svh)] flex-col items-center justify-center overflow-hidden rounded-3xl bg-black px-6 text-center sm:min-h-[calc(100svh)]">
+      <div className="relative flex min-h-[calc(100svh+18vh)] flex-col items-center justify-center overflow-hidden rounded-t-3xl bg-black px-6 pb-[18vh] text-center sm:min-h-[calc(100svh+18vh)]">
         <HeroWave />
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 z-6 opacity-[0.05] mix-blend-overlay bg-[url(/noise.svg)] bg-size-[240px_240px]"
+        />
+        {/* blend the bottom into the page background so the hero melts into
+            the next section instead of ending on a hard edge */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 bottom-0 z-7 h-[42%] bg-gradient-to-b from-transparent to-background"
         />
         <motion.div
           variants={container}
