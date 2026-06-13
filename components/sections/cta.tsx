@@ -29,15 +29,23 @@ const fadeUp = {
 } as const;
 
 /**
- * Closing CTA — a black rounded card (bookending the hero) with the same
- * WebGL wave, here in interactive mode: it brightens on pointer enter,
- * ripples under the cursor, and settles back on leave.
+ * Closing CTA — a black panel (bookending the hero) with the same WebGL
+ * wave, here in interactive mode: it brightens on pointer enter, ripples
+ * under the cursor, and settles back on leave. The top edge melts into
+ * the page background via a gradient overlay (mirror of the hero's
+ * bottom blend) so the section reads as rising out of the page.
  */
 export default function Cta() {
   return (
     <section id="contact" aria-label="Contact" className="py-10">
-      <div className="relative overflow-hidden rounded-3xl bg-black px-6 py-28 text-center sm:py-36">
+      <div className="relative overflow-hidden bg-black px-6 pt-44 pb-28 text-center sm:pt-52 sm:pb-36">
         <HeroWave interactive idleIntensity={0.35} appearDelay={0.2} />
+        {/* blend the top into the page background so the section melts in
+            from above instead of starting on a hard edge */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 z-7 h-[42%] bg-gradient-to-t from-transparent to-background"
+        />
         <motion.div
           variants={container}
           initial="hidden"
