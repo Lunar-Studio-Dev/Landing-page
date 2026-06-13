@@ -21,6 +21,7 @@ import { REASONS } from "@/email/types";
 import { submitContact } from "./actions";
 import { contactSchema, type ContactValues } from "./schema";
 
+
 const LABEL_CLASS = "font-sans text-sm font-medium tracking-normal text-foreground normal-case";
 
 function FieldError({ message }: { message?: string }) {
@@ -58,7 +59,7 @@ export function ContactForm() {
 
   if (done) {
     return (
-      <div className="flex flex-col items-center gap-4 rounded-2xl border bg-card p-10 text-center">
+      <div className="mx-auto flex h-full min-h-[420px] w-full max-w-xl flex-col items-center justify-center gap-4 rounded-2xl bg-[color-mix(in_oklab,var(--color-foreground)_3%,var(--color-background))] p-10 text-center">
         <div className="flex size-12 items-center justify-center rounded-full border border-transparent bg-brand text-brand-foreground shadow-[0_0_24px_var(--brand-glow)]">
           <Check className="size-5" />
         </div>
