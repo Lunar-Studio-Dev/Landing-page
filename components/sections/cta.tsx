@@ -53,17 +53,19 @@ export default function Cta() {
           viewport={{ once: true, amount: 0.4 }}
           className="relative z-10 mx-auto flex max-w-2xl flex-col items-center gap-8"
         >
-
           <motion.h2
             variants={fadeUp}
             className="font-heading text-4xl font-medium tracking-tight text-balance text-white sm:text-6xl"
           >
-            Ready to put <span className="font-serif italic">AI</span> to work?
+            Ready to <span className="font-serif italic">transform</span> your
+            business?
           </motion.h2>
 
-          <motion.p variants={fadeUp} className="max-w-md text-base text-white/65 sm:text-lg">
-            It takes one call to find out what we&apos;d automate first. No
-            commitment required.
+          <motion.p
+            variants={fadeUp}
+            className="max-w-md text-base text-white/65 sm:text-lg"
+          >
+            It takes one call to improve your business.
           </motion.p>
 
           <motion.div variants={fadeUp} className="flex items-center gap-3">
