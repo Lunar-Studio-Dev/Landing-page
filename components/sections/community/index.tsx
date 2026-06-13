@@ -27,7 +27,7 @@ export default function Community() {
           Loved by the community.
         </h2>
         <p className="max-w-xl  leading-relaxed tracking-[0.01em] text-muted-foreground">
-          Here&apos;s what people have to say about working with us.
+          Kind words from the people cheering us on.
         </p>
       </div>
 
