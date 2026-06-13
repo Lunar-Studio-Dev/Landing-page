@@ -15,15 +15,17 @@ const CONNECTORS = [
   "M190 148C240 148 252 120 282 120",
 ];
 
-const PULSE_PATH = "M190 100C230 100 244 120 282 120L420 120";
+// per-task routes: the dot emerges from a task, through the engine, to output.
+const ROUTES = CONNECTORS.map((c) => `${c}L420 120`);
 
 /**
- * Repetitive tasks flow into an automation engine and come out as one
- * output: connectors draw themselves in, checkboxes tick off staggered,
- * and a pulse loops through the pipeline.
+ * Repetitive tasks flow into an automation engine and come out as one output.
+ * The pulse streams from each task box in turn; only the box it's currently
+ * flowing from is checked off (the tick animates in), the others stay blank.
  */
 export function FigAutomations({ animated, ...props }: FigProps) {
   const reduceMotion = useReducedMotion();
+  const [active, setActive] = React.useState(0);
   const draw = (delay: number, duration = 0.8) =>
     reduceMotion ? { duration: 0 } : { duration, ease: EASE, delay };
 
@@ -56,6 +58,7 @@ export function FigAutomations({ animated, ...props }: FigProps) {
             className="stroke-foreground/30"
             strokeWidth="0.75"
           />
+          {/* only the active task's checkbox is ticked */}
           <motion.path
             d={`M56 ${y + 16}l4 4 7-8`}
             className="stroke-brand"
@@ -63,8 +66,10 @@ export function FigAutomations({ animated, ...props }: FigProps) {
             strokeLinecap="round"
             strokeLinejoin="round"
             initial={{ pathLength: 0 }}
-            animate={{ pathLength: animated ? 1 : 0 }}
-            transition={draw(1 + i * 0.15, 0.3)}
+            animate={{ pathLength: animated && active === i ? 1 : 0 }}
+            transition={
+              reduceMotion ? { duration: 0 } : { duration: 0.35, ease: EASE }
+            }
           />
           <line
             x1="78"
@@ -155,15 +160,25 @@ export function FigAutomations({ animated, ...props }: FigProps) {
         </text>
       </motion.g>
 
-      {/* pulse traveling through the pipeline */}
+      {/* pulse — streams from each task box in turn */}
       {animated && !reduceMotion && (
-        <circle r="3" className="fill-brand">
-          <animateMotion
-            dur="2.6s"
-            repeatCount="indefinite"
-            path={PULSE_PATH}
-          />
-        </circle>
+        <motion.circle
+          key={active}
+          r="3"
+          className="fill-brand"
+          style={{ offsetPath: `path("${ROUTES[active]}")` }}
+          initial={{ offsetDistance: "0%", opacity: 0 }}
+          animate={{
+            offsetDistance: ["0%", "10%", "90%", "100%"],
+            opacity: [0, 1, 1, 0],
+          }}
+          transition={{
+            duration: 2.2,
+            ease: "linear",
+            times: [0, 0.1, 0.9, 1],
+          }}
+          onAnimationComplete={() => setActive((a) => (a + 1) % ROUTES.length)}
+        />
       )}
     </svg>
   );

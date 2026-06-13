@@ -90,7 +90,6 @@ export function FigLayers({ animated, ...props }: FigProps) {
           className="fill-foreground/5 stroke-foreground/25"
           strokeWidth="0.75"
         />
-        <circle cx="380" cy="106" r="3" className="fill-brand" />
       </motion.g>
 
       {/* layer labels with dashed leader lines */}

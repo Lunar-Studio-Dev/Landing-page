@@ -34,16 +34,43 @@ const JUNCTIONS = [
   { cx: 349, cy: 140, delay: 1.4 },
 ];
 
-// The pulse alternates between the two outcome routes each cycle. Each route
-// runs input → AI node → outcome; the middle segment (281→349) crosses the
-// node and is hidden via the opacity keyframes, so the dot reads as
-// "consumed and processed" rather than gliding across the box.
-const PULSE_ROUTES = [
-  "M140 130L281 128L349 122C420 120 435 80 470 80",
-  "M140 130L281 132L349 138C420 140 435 180 470 180",
+// Three dots stream in — one from each input box to the AI node — where they
+// are consumed; the forward dot then emerges from the node and continues to
+// an outcome, alternating between the two each cycle.
+const INPUT_ROUTES = [
+  "M140 50C190 50 205 118 281 118",
+  "M140 130L281 130",
+  "M140 210C190 210 205 142 281 142",
 ];
 
-function PipelinePulse() {
+const PULSE_ROUTES = [
+  "M349 122C420 120 435 80 470 80",
+  "M349 138C420 140 435 180 470 180",
+];
+
+function InputPulse({ route, delay }: { route: string; delay: number }) {
+  return (
+    <motion.circle
+      r="3"
+      className="fill-brand"
+      style={{ offsetPath: `path("${route}")` }}
+      initial={{ offsetDistance: "0%", opacity: 0 }}
+      animate={{
+        offsetDistance: ["0%", "12%", "82%", "100%"],
+        opacity: [0, 1, 1, 0],
+      }}
+      transition={{
+        duration: 1.8,
+        ease: "linear",
+        times: [0, 0.12, 0.82, 1],
+        repeat: Infinity,
+        delay,
+      }}
+    />
+  );
+}
+
+function ForwardPulse() {
   const [route, setRoute] = React.useState(0);
   return (
     <motion.circle
@@ -53,13 +80,13 @@ function PipelinePulse() {
       style={{ offsetPath: `path("${PULSE_ROUTES[route]}")` }}
       initial={{ offsetDistance: "0%", opacity: 0 }}
       animate={{
-        offsetDistance: ["0%", "6%", "40%", "44%", "58%", "62%", "94%", "100%"],
-        opacity: [0, 1, 1, 0, 0, 1, 1, 0],
+        offsetDistance: ["0%", "14%", "85%", "100%"],
+        opacity: [0, 1, 1, 0],
       }}
       transition={{
-        duration: 2.4,
+        duration: 1.6,
         ease: "linear",
-        times: [0, 0.06, 0.4, 0.44, 0.58, 0.62, 0.94, 1],
+        times: [0, 0.14, 0.85, 1],
       }}
       onAnimationComplete={() => setRoute((r) => (r + 1) % PULSE_ROUTES.length)}
     />
@@ -228,8 +255,15 @@ export function FigPipeline({ animated, ...props }: FigProps) {
         One efficient, intelligent system
       </motion.text>
 
-      {/* pulse — alternates between the two outcome routes, hidden over the node */}
-      {animated && !reduceMotion && <PipelinePulse />}
+      {/* three dots stream in from the inputs; one forward dot leaves the node */}
+      {animated && !reduceMotion && (
+        <>
+          {INPUT_ROUTES.map((route, i) => (
+            <InputPulse key={route} route={route} delay={i * 0.4} />
+          ))}
+          <ForwardPulse />
+        </>
+      )}
     </svg>
   );
 }
