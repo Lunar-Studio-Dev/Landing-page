@@ -141,7 +141,7 @@ export function AppScrollbar() {
       <div
         ref={thumbRef}
         onPointerDown={onThumbPointerDown}
-        className="w-full rounded-full bg-brand/50 transition-colors hover:bg-brand active:bg-brand"
+        className="w-full rounded-full bg-muted-foreground/40 transition-colors hover:bg-muted-foreground/70 active:bg-muted-foreground/70"
       />
     </div>
   );
