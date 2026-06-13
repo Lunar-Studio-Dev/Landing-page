@@ -50,6 +50,7 @@ export function ContactForm() {
 
   const onSubmit = async (values: ContactValues) => {
     setServerError(null);
+    console.log("Form: ", values)
     const res = await submitContact(values);
     if (res.ok) setDone(values.firstName);
     else setServerError(res.error ?? "Something went wrong. Please try again.");
