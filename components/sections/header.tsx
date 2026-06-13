@@ -14,11 +14,11 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
-  { label: "About us", href: "#about" },
-  { label: "Work", href: "#projects" },
-  { label: "Team", href: "#team" },
-  { label: "Reviews", href: "#reviews" },
-  { label: "FAQ", href: "#faq" },
+  // { label: "About us", href: "#about" },
+  // { label: "Work", href: "/#projects" },
+  { label: "Team", href: "/#team" },
+  { label: "Reviews", href: "/#community" },
+  { label: "FAQ", href: "/#faq" },
 ];
 
 const SCROLL_THRESHOLD = 80;
@@ -70,18 +70,18 @@ function Header() {
 
         <nav className="hidden items-center md:flex">
           {NAV_LINKS.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
               className="rounded-full px-3 py-1.5 text-sm text-white/70 transition-colors hover:text-white"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
         <Button asChild className="shrink-0">
-          <a href="/contact-us">Contact us</a>
+          <Link href="/contact-us">Contact us</Link>
         </Button>
       </motion.div>
     </header>

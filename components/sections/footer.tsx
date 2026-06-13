@@ -1,4 +1,5 @@
 import * as React from "react";
+import Link from "next/link";
 import { Moon } from "lucide-react";
 
 import { FooterWatermark } from "./footer-watermark";
@@ -43,26 +44,26 @@ const LINK_GROUPS = [
   {
     heading: "Services",
     links: [
-      { label: "AI Automations", href: "#services" },
-      { label: "AI Consultation", href: "#services" },
-      { label: "Custom Software", href: "#services" },
-      { label: "AI Workflows", href: "#services" },
+      { label: "AI Automations", href: "/#services" },
+      { label: "AI Consultation", href: "/#services" },
+      { label: "Custom Software", href: "/#services" },
+      { label: "AI Workflows", href: "/#services" },
     ],
   },
   {
     heading: "Company",
     links: [
-      { label: "About us", href: "#" },
-      { label: "Community", href: "#community" },
-      { label: "FAQ", href: "#faq" },
+      { label: "Team", href: "/#team" },
+      { label: "Community", href: "/#community" },
+      { label: "FAQ", href: "/#faq" },
       { label: "Contact", href: "/contact-us" },
     ],
   },
   {
     heading: "Legal",
     links: [
-      { label: "Privacy Policy", href: "#" },
-      { label: "Terms of Service", href: "#" },
+      { label: "Privacy Policy", href: "/privacy-policy" },
+      { label: "Terms of Service", href: "/terms-of-service" },
     ],
   },
 ];
@@ -100,13 +101,13 @@ export default function Footer() {
                 {heading}
               </div>
               {links.map(({ label, href }) => (
-                <a
+                <Link
                   key={label}
                   href={href}
                   className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                 >
                   {label}
-                </a>
+                </Link>
               ))}
             </div>
           ))}
