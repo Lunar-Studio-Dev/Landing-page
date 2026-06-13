@@ -29,7 +29,10 @@ export default function Team() {
           Our team
         </div>
         <h2 className="font-heading text-4xl font-medium tracking-tight text-foreground sm:text-5xl">
-          Built by Students of <br /> <span className="text-brand font-mono"> - Chai Code</span>.
+          Built by Students of{" "}
+          <a href="https://chaicode.com/" target="_blank">
+            <span className="font-serif italic">Chai Code</span>.
+          </a>
         </h2>
       </div>
 
