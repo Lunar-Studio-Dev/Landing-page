@@ -4,18 +4,21 @@ import { TeamCard, type TeamMember } from "./team-card";
 
 const TEAM: TeamMember[] = [
   {
-    name: "Barun",
-    image: "/teams/barun.jpeg",
-    socials: { x: "#", linkedin: "#", github: "#" },
-  },
-  {
-    name: "Disha",
+    name: "Disha Kemble",
+    role: "Ready to turn ideas into reality.",
     image: "/teams/disha.jpeg",
     socials: { x: "#", linkedin: "#", github: "#" },
   },
   {
-    name: "Sagar",
+    name: "Sagar Kemble",
+    role: "Ready to create and colaborate",
     image: "/teams/sagar.jpeg",
+    socials: { x: "#", linkedin: "#", github: "#" },
+  },
+  {
+    name: "Barun Tiwary",
+    role: "Turning ideas into impactful solutions.",
+    image: "/teams/barun.jpeg",
     socials: { x: "#", linkedin: "#", github: "#" },
   },
 ];

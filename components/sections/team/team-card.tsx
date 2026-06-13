@@ -32,6 +32,7 @@ function GithubIcon(props: IconProps) {
 
 export type TeamMember = {
   name: string;
+  role: string;
   image: string;
   socials: { x?: string; linkedin?: string; github?: string };
 };
@@ -48,6 +49,7 @@ const SOCIALS = [
  */
 export function TeamCard({
   name,
+  role,
   image,
   socials,
   index = 0,
@@ -59,7 +61,11 @@ export function TeamCard({
       initial={reduceMotion ? false : { opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
-      transition={{ duration: 0.5, ease: [0.165, 0.84, 0.44, 1], delay: index * 0.08 }}
+      transition={{
+        duration: 0.5,
+        ease: [0.165, 0.84, 0.44, 1],
+        delay: index * 0.08,
+      }}
       className="group relative aspect-[3/4] overflow-hidden rounded-2xl border bg-card"
     >
       <Image
@@ -74,9 +80,12 @@ export function TeamCard({
         aria-hidden
         className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent"
       />
-      <div className="absolute inset-x-0 bottom-0 flex flex-col gap-2 p-4">
-        <h3 className="font-heading text-lg font-medium text-white">{name}</h3>
-        <div className="flex items-center gap-2.5">
+      <div className="absolute inset-x-0 bottom-0 flex flex-col gap-3 p-5">
+        <div className="flex flex-col gap-0.5">
+          <h3 className="font-heading text-2xl font-medium text-white sm:text-3xl">{name}</h3>
+          <p className="text-sm text-white/55">{role}</p>
+        </div>
+        <div className="flex items-center gap-3.5">
           {SOCIALS.map(({ key, label, Icon }) => {
             const href = socials[key];
             if (!href) return null;
@@ -87,9 +96,9 @@ export function TeamCard({
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`${name} on ${label}`}
-                className="text-white/60 transition-colors hover:text-white"
+                className="text-white/70 transition-colors hover:text-white"
               >
-                <Icon className="size-4" />
+                <Icon className="size-5" />
               </a>
             );
           })}
