@@ -69,9 +69,13 @@ const LINK_GROUPS = [
 ];
 
 const SOCIALS = [
-  { label: "X / Twitter", href: "https://twitter.com", Icon: XIcon },
+  { label: "X / Twitter", href: "", Icon: XIcon },
   { label: "LinkedIn", href: "https://linkedin.com", Icon: LinkedinIcon },
-  { label: "Instagram", href: "https://instagram.com", Icon: InstagramIcon },
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/lunarstudio.hq/",
+    Icon: InstagramIcon,
+  },
 ];
 
 export default function Footer() {

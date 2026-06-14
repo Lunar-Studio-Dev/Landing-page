@@ -7,19 +7,31 @@ const TEAM: TeamMember[] = [
     name: "Disha Kemble",
     role: "Ready to turn ideas into reality.",
     image: "/teams/disha.webp",
-    socials: { x: "#", linkedin: "#", github: "#" },
+    socials: {
+      x: "https://x.com/DishaKemble",
+      linkedin: "https://www.linkedin.com/in/disha-kemble26/",
+      github: "https://github.com/dishakemble260",
+    },
   },
   {
     name: "Sagar Kemble",
     role: "Ready to create and colaborate",
     image: "/teams/sagar.webp",
-    socials: { x: "#", linkedin: "#", github: "#" },
+    socials: {
+      x: "https://x.com/sagar__kemble",
+      linkedin: "https://www.linkedin.com/in/sagar-kemble-816ba4342",
+      github: "https://github.com/sagarkemble",
+    },
   },
   {
     name: "Barun Tiwary",
     role: "Turning ideas into impactful solutions.",
     image: "/teams/barun.webp",
-    socials: { x: "#", linkedin: "#", github: "#" },
+    socials: {
+      x: "https://x.com/21me60",
+      linkedin: "https://www.linkedin.com/in/barun-tiwary/",
+      github: "https://gitHub.com/Barun355",
+    },
   },
 ];
 
