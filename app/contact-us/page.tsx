@@ -64,8 +64,12 @@ const SOCIALS = [
     href: "https://instagram.com/lunarstudio.hq",
     Icon: InstagramIcon,
   },
-  { label: "Twitter", href: "https://x.com", Icon: XIcon },
-  { label: "LinkedIn", href: "https://linkedin.com", Icon: LinkedinIcon },
+  { label: "Twitter", href: "https://x.com/lunarstudiohq", Icon: XIcon },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/lunarstudiohq/",
+    Icon: LinkedinIcon,
+  },
 ];
 
 export default function ContactPage() {

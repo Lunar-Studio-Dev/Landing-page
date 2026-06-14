@@ -69,8 +69,12 @@ const LINK_GROUPS = [
 ];
 
 const SOCIALS = [
-  { label: "X / Twitter", href: "", Icon: XIcon },
-  { label: "LinkedIn", href: "https://linkedin.com", Icon: LinkedinIcon },
+  { label: "X / Twitter", href: "https://x.com/lunarstudiohq", Icon: XIcon },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/lunarstudiohq/",
+    Icon: LinkedinIcon,
+  },
   {
     label: "Instagram",
     href: "https://www.instagram.com/lunarstudio.hq/",
