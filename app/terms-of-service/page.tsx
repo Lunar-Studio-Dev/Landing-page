@@ -104,14 +104,13 @@ const SECTIONS: LegalSection[] = [
     body: (
       <>
         <p>
-          On full payment, you own the final deliverables we create
-          specifically for you, including source code and assets.
+          On full payment, you own the final deliverables we create specifically
+          for you, including source code and assets.
         </p>
         <p>
-          We retain ownership of our pre-existing tools, libraries,
-          frameworks, and general know-how. We grant you a perpetual,
-          non-exclusive licence to use any such components that are embedded in
-          your deliverables.
+          We retain ownership of our pre-existing tools, libraries, frameworks,
+          and general know-how. We grant you a perpetual, non-exclusive licence
+          to use any such components that are embedded in your deliverables.
         </p>
       </>
     ),
@@ -204,7 +203,7 @@ const SECTIONS: LegalSection[] = [
     body: (
       <p>
         Questions about these Terms? Email us at{" "}
-        <a href="mailto:hello@lunarstudio.com">hello@lunarstudio.com</a>.
+        <a href="mailto:team@lunarstudio.dev">team@lunarstudio.dev</a>.
       </p>
     ),
   },

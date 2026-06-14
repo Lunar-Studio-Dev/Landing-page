@@ -21,9 +21,8 @@ const SECTIONS: LegalSection[] = [
         <ul>
           <li>
             <strong>Information you give us.</strong> When you fill out our
-            contact form, request a proposal, or email us, we collect your
-            first name, last name, email address, and the details of your
-            inquiry.
+            contact form, request a proposal, or email us, we collect your first
+            name, last name, email address, and the details of your inquiry.
           </li>
           <li>
             <strong>Project information.</strong> During an engagement, you may
@@ -66,10 +65,10 @@ const SECTIONS: LegalSection[] = [
     body: (
       <>
         <p>
-          Our website uses a small number of cookies and similar technologies
-          to keep the site functioning and to measure aggregate, anonymised
-          usage. You can disable cookies through your browser settings; some
-          parts of the site may not work as intended if you do.
+          Our website uses a small number of cookies and similar technologies to
+          keep the site functioning and to measure aggregate, anonymised usage.
+          You can disable cookies through your browser settings; some parts of
+          the site may not work as intended if you do.
         </p>
       </>
     ),
@@ -118,10 +117,10 @@ const SECTIONS: LegalSection[] = [
     body: (
       <p>
         We protect your information with industry-standard measures, including
-        encryption in transit (TLS), access controls on a least-privilege
-        basis, and regular review of who can access what. No method of
-        transmission or storage is completely secure, but we work to protect
-        your data and to respond promptly if an issue arises.
+        encryption in transit (TLS), access controls on a least-privilege basis,
+        and regular review of who can access what. No method of transmission or
+        storage is completely secure, but we work to protect your data and to
+        respond promptly if an issue arises.
       </p>
     ),
   },
@@ -130,9 +129,7 @@ const SECTIONS: LegalSection[] = [
     heading: "Your Rights",
     body: (
       <>
-        <p>
-          Depending on where you live, you may have the right to:
-        </p>
+        <p>Depending on where you live, you may have the right to:</p>
         <ul>
           <li>Access the personal information we hold about you.</li>
           <li>Correct inaccurate or incomplete information.</li>
@@ -143,7 +140,7 @@ const SECTIONS: LegalSection[] = [
         </ul>
         <p>
           To exercise any of these rights, email us at{" "}
-          <a href="mailto:privacy@lunarstudio.com">privacy@lunarstudio.com</a>.
+          <a href="mailto:team@lunarstudio.dev">team@lunarstudio.dev</a>.
         </p>
       </>
     ),
@@ -154,9 +151,8 @@ const SECTIONS: LegalSection[] = [
     body: (
       <p>
         We may process and store information in countries other than your own.
-        Where we transfer personal data internationally, we take steps to
-        ensure it remains protected in line with this policy and applicable
-        law.
+        Where we transfer personal data internationally, we take steps to ensure
+        it remains protected in line with this policy and applicable law.
       </p>
     ),
   },
@@ -178,8 +174,8 @@ const SECTIONS: LegalSection[] = [
     body: (
       <p>
         Our website may link to third-party sites we do not control. We are not
-        responsible for their content or privacy practices, and we encourage
-        you to review their policies before sharing information with them.
+        responsible for their content or privacy practices, and we encourage you
+        to review their policies before sharing information with them.
       </p>
     ),
   },
@@ -205,10 +201,12 @@ const SECTIONS: LegalSection[] = [
         </p>
         <ul>
           <li>
-            General: <a href="mailto:hello@lunarstudio.com">hello@lunarstudio.com</a>
+            General:{" "}
+            <a href="mailto:team@lunarstudio.dev">team@lunarstudio.dev</a>
           </li>
           <li>
-            Privacy: <a href="mailto:privacy@lunarstudio.com">privacy@lunarstudio.com</a>
+            Privacy:{" "}
+            <a href="mailto:team@lunarstudio.dev">team@lunarstudio.dev</a>
           </li>
         </ul>
       </>
@@ -224,10 +222,11 @@ export default function PrivacyPolicyPage() {
       lastUpdated="June 13, 2026"
       intro={
         <p>
-          This Privacy Policy explains how <strong>Lunar Studio</strong> (&quot;we&quot;,
-          &quot;us&quot;, or &quot;our&quot;) collects, uses, and protects your information when
-          you visit our website or work with us. By using our website or
-          engaging our services, you agree to the practices described here.
+          This Privacy Policy explains how <strong>Lunar Studio</strong>{" "}
+          (&quot;we&quot;, &quot;us&quot;, or &quot;our&quot;) collects, uses,
+          and protects your information when you visit our website or work with
+          us. By using our website or engaging our services, you agree to the
+          practices described here.
         </p>
       }
       sections={SECTIONS}
