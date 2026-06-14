@@ -69,8 +69,16 @@ export default function Cta() {
             It takes one call to improve your business.
           </motion.p>
 
-          <motion.div variants={fadeUp} className="flex items-center gap-3">
-            <Button variant="brand" size="lg" asChild className="group">
+          <motion.div
+            variants={fadeUp}
+            className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:items-center"
+          >
+            <Button
+              variant="brand"
+              size="lg"
+              asChild
+              className="group w-full sm:w-auto"
+            >
               <Link href="/contact-us">
                 Book a free call
                 <ArrowRight
@@ -83,7 +91,7 @@ export default function Cta() {
               variant="outline"
               size="lg"
               asChild
-              className="border-white/15 bg-transparent text-white hover:bg-white/5 hover:text-white"
+              className="w-full border-white/15 bg-transparent text-white hover:bg-white/5 hover:text-white sm:w-auto"
             >
               <Link href="/#services">See our work</Link>
             </Button>

@@ -146,8 +146,16 @@ function Hero() {
             digitally - we identify it, build it.
           </motion.p>
 
-          <motion.div variants={fadeUp} className="flex items-center gap-3">
-            <Button variant="brand" size="lg" asChild className="group">
+          <motion.div
+            variants={fadeUp}
+            className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:items-center"
+          >
+            <Button
+              variant="brand"
+              size="lg"
+              asChild
+              className="group w-full sm:w-auto"
+            >
               <Link href="/contact-us">
                 Book a free call
                 <ArrowRight
@@ -159,7 +167,7 @@ function Hero() {
             <Button
               variant="outline"
               size="lg"
-              className="border-white/15 bg-transparent text-white hover:bg-white/5 hover:text-white"
+              className="w-full border-white/15 bg-transparent text-white hover:bg-white/5 hover:text-white sm:w-auto"
             >
               Our work
             </Button>

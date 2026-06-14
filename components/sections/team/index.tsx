@@ -31,7 +31,7 @@ export default function Team() {
           <span aria-hidden className="size-1 rounded-full bg-brand" />
           Our team
         </div>
-        <h2 className="font-heading text-4xl font-medium tracking-tight text-balance text-foreground sm:text-5xl whitespace-nowrap">
+        <h2 className="font-heading text-4xl font-medium tracking-tight text-balance text-foreground sm:text-5xl">
           Built by Students of{" "}
           <a href="https://chaicode.com/" target="_blank">
             <span className="font-serif italic">Chai Code</span>.
