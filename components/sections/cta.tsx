@@ -45,7 +45,7 @@ export default function Cta() {
             from above instead of starting on a hard edge */}
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-x-0 top-0 z-7 h-[42%] bg-gradient-to-t from-transparent to-background"
+          className="pointer-events-none absolute inset-x-0 top-0 z-7 h-[42%] bg-linear-to-t from-transparent to-background"
         />
         <motion.div
           variants={container}

@@ -60,7 +60,6 @@ export default function Faq() {
         <Accordion.Root
           type="single"
           collapsible
-          defaultValue="faq-0"
           className="divide-y divide-border/40 overflow-hidden rounded-2xl bg-[color-mix(in_oklab,var(--color-foreground)_3%,var(--color-background))] lg:col-span-7"
         >
           {FAQS.map(({ question, answer }, i) => (
