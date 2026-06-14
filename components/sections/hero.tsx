@@ -164,13 +164,15 @@ function Hero() {
                 />
               </Link>
             </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              className="w-full border-white/15 bg-transparent text-white hover:bg-white/5 hover:text-white sm:w-auto"
-            >
-              Our work
-            </Button>
+            <Link href="/#services" className="w-full sm:w-auto">
+              <Button
+                variant="outline"
+                size="lg"
+                className="w-full border-white/15 bg-transparent text-white hover:bg-white/5 hover:text-white sm:w-auto"
+              >
+                Our services
+              </Button>
+            </Link>
           </motion.div>
         </motion.div>
       </div>
