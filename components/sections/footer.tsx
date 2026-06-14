@@ -87,7 +87,7 @@ export default function Footer() {
           <div className="flex items-center gap-2">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/logo.svg" alt="Lunar Studio logo" className="size-6" />
-            <span className="font-heading text-base font-medium text-foreground">
+            <span className="font-heading text-base font-medium text-foreground pb-1">
               Lunar Studio
             </span>
           </div>

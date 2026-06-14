@@ -111,7 +111,9 @@ function Header() {
             alt="Lunar Studio logo"
             className="h-[26px] w-auto"
           />
-          <span className="font-medium whitespace-nowrap">Lunar Studio</span>
+          <span className="font-medium whitespace-nowrap pb-1">
+            Lunar Studio
+          </span>
         </Link>
 
         <nav className="hidden items-center md:flex">
