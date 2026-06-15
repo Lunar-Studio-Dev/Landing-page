@@ -157,7 +157,7 @@ export function ContactForm() {
           control={control}
           name="reason"
           render={({ field }) => (
-            <Select value={field.value} onValueChange={field.onChange}>
+            <Select value={field.value ?? ""} onValueChange={field.onChange}>
               <SelectTrigger id="reason" aria-invalid={!!errors.reason}>
                 <SelectValue placeholder="Select a reason" />
               </SelectTrigger>
