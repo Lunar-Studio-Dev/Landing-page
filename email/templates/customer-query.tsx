@@ -36,8 +36,8 @@ export function CustomerQuery({
           margin: 0,
         }}
       >
-        In the meantime, feel free to reply to this email with any extra
-        details about your project.
+        In the meantime, feel free to reply to this email with any extra details
+        about your project.
       </Text>
       <Text style={{ fontSize: "13px", color: "#6a6b6c", margin: "26px 0 0" }}>
         - The Lunar Studio team

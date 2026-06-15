@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
 function SectionHeading({
   eyebrow,
@@ -6,10 +6,10 @@ function SectionHeading({
   description,
   className,
 }: {
-  eyebrow: string
-  title: string
-  description?: string
-  className?: string
+  eyebrow: string;
+  title: string;
+  description?: string;
+  className?: string;
 }) {
   return (
     <div className={cn("flex max-w-xl flex-col gap-2", className)}>
@@ -24,7 +24,7 @@ function SectionHeading({
         <p className="text-muted-foreground">{description}</p>
       ) : null}
     </div>
-  )
+  );
 }
 
-export { SectionHeading }
+export { SectionHeading };

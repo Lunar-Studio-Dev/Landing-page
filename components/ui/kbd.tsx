@@ -1,6 +1,6 @@
-import * as React from "react"
+import * as React from "react";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
 function Kbd({ className, ...props }: React.ComponentProps<"kbd">) {
   return (
@@ -8,11 +8,11 @@ function Kbd({ className, ...props }: React.ComponentProps<"kbd">) {
       data-slot="kbd"
       className={cn(
         "pointer-events-none inline-flex h-5 min-w-5 items-center justify-center rounded border border-border bg-secondary px-1 font-mono text-[11px] font-medium text-muted-foreground select-none",
-        className
+        className,
       )}
       {...props}
     />
-  )
+  );
 }
 
-export { Kbd }
+export { Kbd };

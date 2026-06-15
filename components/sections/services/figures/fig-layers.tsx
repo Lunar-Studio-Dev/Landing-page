@@ -99,7 +99,9 @@ export function FigLayers({ animated, ...props }: FigProps) {
           initial={{ opacity: 0, y: 14 }}
           animate={animated ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
           transition={
-            reduceMotion ? { duration: 0 } : { duration: 1.2, ease: EASE, delay }
+            reduceMotion
+              ? { duration: 0 }
+              : { duration: 1.2, ease: EASE, delay }
           }
         >
           <line

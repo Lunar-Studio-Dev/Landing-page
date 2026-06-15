@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { motion } from "motion/react";
 import dynamic from "next/dynamic";
+import posthog from "posthog-js";
 
 import { Button } from "@/components/ui/button";
 
@@ -79,7 +80,15 @@ export default function Cta() {
               asChild
               className="group w-full sm:w-auto"
             >
-              <Link href="/contact-us">
+              <Link
+                href="/contact-us"
+                onClick={() =>
+                  posthog.capture("cta_clicked", {
+                    location: "cta_section",
+                    label: "book_a_free_call",
+                  })
+                }
+              >
                 Book a free call
                 <ArrowRight
                   data-icon="inline-end"

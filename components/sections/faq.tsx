@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { Accordion } from "radix-ui";
+import posthog from "posthog-js";
 
 import { FAQS } from "@/lib/faqs";
 import { cn } from "@/lib/utils";
@@ -61,6 +62,15 @@ export default function Faq() {
           type="single"
           collapsible
           className="divide-y divide-border/40 overflow-hidden rounded-2xl bg-[color-mix(in_oklab,var(--color-foreground)_3%,var(--color-background))] lg:col-span-7"
+          onValueChange={(value) => {
+            if (value) {
+              const index = parseInt(value.replace("faq-", ""), 10);
+              posthog.capture("faq_expanded", {
+                question: FAQS[index]?.question,
+                index,
+              });
+            }
+          }}
         >
           {FAQS.map(({ question, answer }, i) => (
             <Accordion.Item key={question} value={`faq-${i}`}>

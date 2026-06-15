@@ -10,6 +10,7 @@ import {
   useReducedMotion,
   useScroll,
 } from "motion/react";
+import posthog from "posthog-js";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -129,7 +130,16 @@ function Header() {
         </nav>
 
         <Button asChild className="hidden shrink-0 md:inline-flex">
-          <Link href="/contact-us">Contact us</Link>
+          <Link
+            href="/contact-us"
+            onClick={() =>
+              posthog.capture("nav_contact_clicked", {
+                location: "header_desktop",
+              })
+            }
+          >
+            Contact us
+          </Link>
         </Button>
 
         {/* mobile menu toggle */}
@@ -190,7 +200,15 @@ function Header() {
               </nav>
               <div className="border-t border-border/50 p-3">
                 <Button asChild variant="brand" className="w-full">
-                  <Link href="/contact-us" onClick={close}>
+                  <Link
+                    href="/contact-us"
+                    onClick={() => {
+                      posthog.capture("nav_contact_clicked", {
+                        location: "header_mobile",
+                      });
+                      close();
+                    }}
+                  >
                     Contact us
                   </Link>
                 </Button>

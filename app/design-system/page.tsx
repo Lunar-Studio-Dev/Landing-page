@@ -1,10 +1,10 @@
-import { ArrowRight, Check, Sparkles } from "lucide-react"
+import { ArrowRight, Check, Sparkles } from "lucide-react";
 
-import { ColorPalette } from "@/components/showcase/color-palette"
-import { Hero } from "@/components/showcase/hero"
-import { SectionHeading } from "@/components/showcase/section-heading"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
+import { ColorPalette } from "@/components/showcase/color-palette";
+import { Hero } from "@/components/showcase/hero";
+import { SectionHeading } from "@/components/showcase/section-heading";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -12,11 +12,11 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Kbd } from "@/components/ui/kbd"
-import { Progress } from "@/components/ui/progress"
-import { Separator } from "@/components/ui/separator"
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Kbd } from "@/components/ui/kbd";
+import { Progress } from "@/components/ui/progress";
+import { Separator } from "@/components/ui/separator";
 
 export default function Page() {
   return (
@@ -203,8 +203,8 @@ export default function Page() {
                 >
                   inline links are blue
                 </a>{" "}
-                so they read as interactive. Try selecting this paragraph -
-                text selection is the brand color too.
+                so they read as interactive. Try selecting this paragraph - text
+                selection is the brand color too.
               </p>
               <p className="text-sm text-muted-foreground">
                 Press <Kbd>⌘</Kbd> <Kbd>K</Kbd> to open the command menu, or{" "}
@@ -253,5 +253,5 @@ export default function Page() {
         </div>
       </footer>
     </div>
-  )
+  );
 }

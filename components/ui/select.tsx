@@ -1,14 +1,14 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { Select as SelectPrimitive } from "radix-ui"
-import { Check, ChevronDown } from "lucide-react"
+import * as React from "react";
+import { Select as SelectPrimitive } from "radix-ui";
+import { Check, ChevronDown } from "lucide-react";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
-const Select = SelectPrimitive.Root
-const SelectGroup = SelectPrimitive.Group
-const SelectValue = SelectPrimitive.Value
+const Select = SelectPrimitive.Root;
+const SelectGroup = SelectPrimitive.Group;
+const SelectValue = SelectPrimitive.Value;
 
 function SelectTrigger({
   className,
@@ -23,7 +23,7 @@ function SelectTrigger({
         "focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/30",
         "aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40",
         "[&>span]:line-clamp-1",
-        className
+        className,
       )}
       {...props}
     >
@@ -32,7 +32,7 @@ function SelectTrigger({
         <ChevronDown className="size-4 shrink-0 opacity-50" />
       </SelectPrimitive.Icon>
     </SelectPrimitive.Trigger>
-  )
+  );
 }
 
 function SelectContent({
@@ -50,7 +50,7 @@ function SelectContent({
           "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
           position === "popper" &&
             "data-[side=bottom]:translate-y-1 data-[side=top]:-translate-y-1 w-full min-w-[var(--radix-select-trigger-width)]",
-          className
+          className,
         )}
         position={position}
         {...props}
@@ -60,7 +60,7 @@ function SelectContent({
         </SelectPrimitive.Viewport>
       </SelectPrimitive.Content>
     </SelectPrimitive.Portal>
-  )
+  );
 }
 
 function SelectItem({
@@ -74,7 +74,7 @@ function SelectItem({
       className={cn(
         "relative flex w-full cursor-default items-center rounded-lg py-1.5 pr-8 pl-2 text-sm outline-none select-none",
         "focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
-        className
+        className,
       )}
       {...props}
     >
@@ -85,7 +85,7 @@ function SelectItem({
       </span>
       <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
     </SelectPrimitive.Item>
-  )
+  );
 }
 
 export {
@@ -95,4 +95,4 @@ export {
   SelectTrigger,
   SelectContent,
   SelectItem,
-}
+};

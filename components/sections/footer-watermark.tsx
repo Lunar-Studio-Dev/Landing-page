@@ -25,7 +25,9 @@ export function FooterWatermark({ text = "LUNAR" }: { text?: string }) {
     const spot = spotRef.current;
     if (!host || !spot) return;
 
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const reduce = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
     const target = { x: 0, y: 0 };
     const pos = { x: 0, y: 0 };
     let raf = 0;

@@ -1,24 +1,21 @@
-import type { Metadata } from "next"
-import { Geist_Mono, Inter, Noto_Serif } from "next/font/google"
+import type { Metadata } from "next";
+import { Geist_Mono, Inter, Noto_Serif } from "next/font/google";
 
-import "lenis/dist/lenis.css"
-import "./globals.css"
-import { AppScrollbar } from "@/components/app-scrollbar"
-import { JsonLd } from "@/components/json-ld"
-import { Header } from "@/components/sections/header"
-import { SmoothScroll } from "@/components/smooth-scroll"
-import { ThemeProvider } from "@/components/theme-provider"
-import {
-  organizationSchema,
-  websiteSchema,
-} from "@/lib/structured-data"
+import "lenis/dist/lenis.css";
+import "./globals.css";
+import { AppScrollbar } from "@/components/app-scrollbar";
+import { JsonLd } from "@/components/json-ld";
+import { Header } from "@/components/sections/header";
+import { SmoothScroll } from "@/components/smooth-scroll";
+import { ThemeProvider } from "@/components/theme-provider";
+import { organizationSchema, websiteSchema } from "@/lib/structured-data";
 import {
   SEO_KEYWORDS,
   SITE_DESCRIPTION,
   SITE_NAME,
   SITE_TAGLINE,
   SITE_URL,
-} from "@/lib/site"
+} from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -58,26 +55,26 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
-}
+};
 
-const inter = Inter({subsets:['latin'],variable:'--font-sans'})
+const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 const fontMono = Geist_Mono({
   subsets: ["latin"],
   variable: "--font-mono",
-})
+});
 
 const notoSerif = Noto_Serif({
   subsets: ["latin"],
   weight: ["400", "500", "700"],
   style: ["normal", "italic"],
   variable: "--font-serif",
-})
+});
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
     <html
@@ -108,5 +105,5 @@ export default function RootLayout({
         </ThemeProvider>
       </body>
     </html>
-  )
+  );
 }

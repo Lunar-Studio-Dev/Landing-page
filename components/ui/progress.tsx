@@ -1,6 +1,6 @@
-import * as React from "react"
+import * as React from "react";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
 function Progress({
   value = 0,
@@ -16,7 +16,7 @@ function Progress({
       aria-valuenow={value}
       className={cn(
         "h-1.5 w-full overflow-hidden rounded-full bg-secondary",
-        className
+        className,
       )}
       {...props}
     >
@@ -26,7 +26,7 @@ function Progress({
         style={{ width: `${Math.min(100, Math.max(0, value))}%` }}
       />
     </div>
-  )
+  );
 }
 
-export { Progress }
+export { Progress };

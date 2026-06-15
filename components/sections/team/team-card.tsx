@@ -82,7 +82,9 @@ export function TeamCard({
       />
       <div className="absolute inset-x-0 bottom-0 flex flex-col gap-3 p-5">
         <div className="flex flex-col gap-0.5">
-          <h3 className="font-heading text-2xl font-medium text-white sm:text-3xl">{name}</h3>
+          <h3 className="font-heading text-2xl font-medium text-white sm:text-3xl">
+            {name}
+          </h3>
           <p className="text-sm text-white/55">{role}</p>
         </div>
         <div className="flex items-center gap-3.5">

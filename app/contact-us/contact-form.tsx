@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Controller, useForm } from "react-hook-form";
 import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
 import { ArrowRight, Check, Loader2 } from "lucide-react";
+import posthog from "posthog-js";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -21,8 +22,8 @@ import { REASONS } from "@/email/types";
 import { submitContact } from "./actions";
 import { contactSchema, type ContactValues } from "./schema";
 
-
-const LABEL_CLASS = "font-sans text-sm font-medium tracking-normal text-foreground normal-case";
+const LABEL_CLASS =
+  "font-sans text-sm font-medium tracking-normal text-foreground normal-case";
 
 function FieldError({ message }: { message?: string }) {
   if (!message) return null;
@@ -51,10 +52,21 @@ export function ContactForm() {
 
   const onSubmit = async (values: ContactValues) => {
     setServerError(null);
-    console.log("Form: ", values)
+    console.log("Form: ", values);
     const res = await submitContact(values);
-    if (res.ok) setDone(values.firstName);
-    else setServerError(res.error ?? "Something went wrong. Please try again.");
+    if (res.ok) {
+      setDone(values.firstName);
+      posthog.capture("contact_form_submitted", {
+        reason: values.reason,
+        business_name: values.businessName,
+      });
+    } else {
+      setServerError(res.error ?? "Something went wrong. Please try again.");
+      posthog.capture("contact_form_failed", {
+        reason: values.reason,
+        error: res.error,
+      });
+    }
   };
 
   if (done) {
@@ -85,7 +97,9 @@ export function ContactForm() {
     >
       <div className="grid gap-5 sm:grid-cols-2">
         <div className="flex flex-col gap-2">
-          <Label htmlFor="firstName" className={LABEL_CLASS}>First name</Label>
+          <Label htmlFor="firstName" className={LABEL_CLASS}>
+            First name
+          </Label>
           <Input
             id="firstName"
             autoComplete="given-name"
@@ -95,7 +109,9 @@ export function ContactForm() {
           <FieldError message={errors.firstName?.message} />
         </div>
         <div className="flex flex-col gap-2">
-          <Label htmlFor="lastName" className={LABEL_CLASS}>Last name</Label>
+          <Label htmlFor="lastName" className={LABEL_CLASS}>
+            Last name
+          </Label>
           <Input
             id="lastName"
             autoComplete="family-name"
@@ -107,7 +123,9 @@ export function ContactForm() {
       </div>
 
       <div className="flex flex-col gap-2">
-        <Label htmlFor="email" className={LABEL_CLASS}>Email</Label>
+        <Label htmlFor="email" className={LABEL_CLASS}>
+          Email
+        </Label>
         <Input
           id="email"
           type="email"
@@ -119,7 +137,9 @@ export function ContactForm() {
       </div>
 
       <div className="flex flex-col gap-2">
-        <Label htmlFor="businessName" className={LABEL_CLASS}>Business name</Label>
+        <Label htmlFor="businessName" className={LABEL_CLASS}>
+          Business name
+        </Label>
         <Input
           id="businessName"
           autoComplete="organization"
@@ -130,7 +150,9 @@ export function ContactForm() {
       </div>
 
       <div className="flex flex-col gap-2">
-        <Label htmlFor="reason" className={LABEL_CLASS}>Reason</Label>
+        <Label htmlFor="reason" className={LABEL_CLASS}>
+          Reason
+        </Label>
         <Controller
           control={control}
           name="reason"
@@ -153,7 +175,9 @@ export function ContactForm() {
       </div>
 
       <div className="flex flex-col gap-2">
-        <Label htmlFor="description" className={LABEL_CLASS}>Tell us about your project</Label>
+        <Label htmlFor="description" className={LABEL_CLASS}>
+          Tell us about your project
+        </Label>
         <textarea
           id="description"
           rows={5}
@@ -165,9 +189,7 @@ export function ContactForm() {
         <FieldError message={errors.description?.message} />
       </div>
 
-      {serverError && (
-        <p className="text-sm text-destructive">{serverError}</p>
-      )}
+      {serverError && <p className="text-sm text-destructive">{serverError}</p>}
 
       <Button
         type="submit"

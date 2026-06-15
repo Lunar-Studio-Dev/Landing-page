@@ -9,7 +9,7 @@ const TOKENS = [
   { name: "brand", cssVar: "--brand" },
   { name: "brand-muted", cssVar: "--brand-muted" },
   { name: "destructive", cssVar: "--destructive" },
-]
+];
 
 function ColorPalette() {
   return (
@@ -26,7 +26,7 @@ function ColorPalette() {
         </div>
       ))}
     </div>
-  )
+  );
 }
 
-export { ColorPalette }
+export { ColorPalette };

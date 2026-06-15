@@ -82,7 +82,11 @@ export function AppScrollbar() {
   const scrollTo = React.useCallback(
     (target: number, immediate: boolean) => {
       if (lenis) lenis.scrollTo(target, { immediate });
-      else window.scrollTo({ top: target, behavior: immediate ? "auto" : "smooth" });
+      else
+        window.scrollTo({
+          top: target,
+          behavior: immediate ? "auto" : "smooth",
+        });
     },
     [lenis],
   );
@@ -99,7 +103,10 @@ export function AppScrollbar() {
     const onMove = (ev: PointerEvent) => {
       const maxTop = maxTopRef.current;
       if (maxTop <= 0) return;
-      const top = Math.min(Math.max(startTop + (ev.clientY - startY), 0), maxTop);
+      const top = Math.min(
+        Math.max(startTop + (ev.clientY - startY), 0),
+        maxTop,
+      );
       scrollTo((top / maxTop) * limitRef.current, true);
     };
     const onUp = () => {

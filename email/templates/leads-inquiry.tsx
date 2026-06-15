@@ -53,7 +53,9 @@ export function LeadsInquiry({
           >
             {label}
           </Column>
-          <Column style={{ fontSize: "14px", color: "#e6e6e6" }}>{value}</Column>
+          <Column style={{ fontSize: "14px", color: "#e6e6e6" }}>
+            {value}
+          </Column>
         </Row>
       ))}
     </EmailLayout>

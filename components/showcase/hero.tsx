@@ -1,9 +1,9 @@
-import { Star } from "lucide-react"
+import { Star } from "lucide-react";
 
-import { Avatar, AvatarGroup } from "@/components/ui/avatar"
-import { Button } from "@/components/ui/button"
+import { Avatar, AvatarGroup } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
 
-const COMMUNITY = ["AR", "PK", "SJ", "MN", "DV"]
+const COMMUNITY = ["AR", "PK", "SJ", "MN", "DV"];
 
 function Hero() {
   return (
@@ -28,8 +28,8 @@ function Hero() {
         </div>
 
         <h1 className="text-5xl font-medium tracking-tight text-balance sm:text-7xl">
-          Join the <em className="font-serif italic">fastest</em> growing
-          design community?
+          Join the <em className="font-serif italic">fastest</em> growing design
+          community?
         </h1>
 
         <p className="max-w-md text-base text-muted-foreground sm:text-lg">
@@ -57,7 +57,7 @@ function Hero() {
         <div className="absolute bottom-[-70%] left-1/2 h-1/2 w-1/5 -translate-x-1/2 rounded-[100%] bg-foreground opacity-40 blur-2xl" />
       </div>
     </section>
-  )
+  );
 }
 
-export { Hero }
+export { Hero };

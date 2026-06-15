@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { motion } from "motion/react"
-import * as THREE from "three"
+import * as React from "react";
+import { motion } from "motion/react";
+import * as THREE from "three";
 
 const VERTEX_SHADER = /* glsl */ `
   uniform float uTime;
@@ -54,7 +54,7 @@ const VERTEX_SHADER = /* glsl */ `
 
     gl_Position = projectionMatrix * mvPosition;
   }
-`
+`;
 
 const FRAGMENT_SHADER = /* glsl */ `
   uniform vec3 uBase;
@@ -92,24 +92,24 @@ const FRAGMENT_SHADER = /* glsl */ `
 
     gl_FragColor = vec4(col * edge * uReveal, 1.0);
   }
-`
+`;
 
 function createWave(container: HTMLDivElement, { idleReveal = 1 } = {}) {
   const renderer = new THREE.WebGLRenderer({
     antialias: true,
     alpha: true,
     powerPreference: "high-performance",
-  })
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.75))
-  renderer.domElement.className = "block h-full w-full"
-  container.appendChild(renderer.domElement)
+  });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.75));
+  renderer.domElement.className = "block h-full w-full";
+  container.appendChild(renderer.domElement);
 
-  const scene = new THREE.Scene()
-  const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 50)
-  camera.position.set(0, 0.7, 4.6)
-  camera.lookAt(0, -0.15, 0)
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 50);
+  camera.position.set(0, 0.7, 4.6);
+  camera.lookAt(0, -0.15, 0);
 
-  const geometry = new THREE.PlaneGeometry(10, 7, 220, 140)
+  const geometry = new THREE.PlaneGeometry(10, 7, 220, 140);
   const material = new THREE.ShaderMaterial({
     vertexShader: VERTEX_SHADER,
     fragmentShader: FRAGMENT_SHADER,
@@ -125,71 +125,71 @@ function createWave(container: HTMLDivElement, { idleReveal = 1 } = {}) {
     transparent: true,
     blending: THREE.AdditiveBlending,
     depthWrite: false,
-  })
+  });
 
-  const mesh = new THREE.Mesh(geometry, material)
-  mesh.rotation.x = -1.32
-  mesh.position.y = -0.75
-  scene.add(mesh)
+  const mesh = new THREE.Mesh(geometry, material);
+  mesh.rotation.x = -1.32;
+  mesh.position.y = -0.75;
+  scene.add(mesh);
 
   const resize = () => {
-    const { clientWidth: w, clientHeight: h } = container
-    if (w === 0 || h === 0) return
-    renderer.setSize(w, h, false)
-    camera.aspect = w / h
-    camera.updateProjectionMatrix()
-  }
-  resize()
+    const { clientWidth: w, clientHeight: h } = container;
+    if (w === 0 || h === 0) return;
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  };
+  resize();
 
   // pointer interactivity: targets are set by events, the render loop
   // eases the uniforms toward them so enter/move/leave all feel fluid
-  const raycaster = new THREE.Raycaster()
-  const pointerNdc = new THREE.Vector2()
-  const mouseTarget = new THREE.Vector2(0, 0)
-  let hovered = false
-  let prevTime = 0
+  const raycaster = new THREE.Raycaster();
+  const pointerNdc = new THREE.Vector2();
+  const mouseTarget = new THREE.Vector2(0, 0);
+  let hovered = false;
+  let prevTime = 0;
 
   const setPointer = (clientX: number, clientY: number) => {
-    const rect = renderer.domElement.getBoundingClientRect()
-    if (rect.width === 0 || rect.height === 0) return
+    const rect = renderer.domElement.getBoundingClientRect();
+    if (rect.width === 0 || rect.height === 0) return;
     pointerNdc.set(
       ((clientX - rect.left) / rect.width) * 2 - 1,
-      -((clientY - rect.top) / rect.height) * 2 + 1
-    )
-    raycaster.setFromCamera(pointerNdc, camera)
-    const hit = raycaster.intersectObject(mesh)[0]
+      -((clientY - rect.top) / rect.height) * 2 + 1,
+    );
+    raycaster.setFromCamera(pointerNdc, camera);
+    const hit = raycaster.intersectObject(mesh)[0];
     if (hit) {
-      const local = mesh.worldToLocal(hit.point.clone())
-      mouseTarget.set(local.x, local.y)
+      const local = mesh.worldToLocal(hit.point.clone());
+      mouseTarget.set(local.x, local.y);
     }
-  }
+  };
 
   const setHover = (h: boolean) => {
-    hovered = h
-  }
+    hovered = h;
+  };
 
   const render = (time: number) => {
-    const dt = Math.min(Math.max(time - prevTime, 0), 0.1)
-    prevTime = time
-    const k = 1 - Math.exp(-dt * 5)
+    const dt = Math.min(Math.max(time - prevTime, 0), 0.1);
+    prevTime = time;
+    const k = 1 - Math.exp(-dt * 5);
 
-    const u = material.uniforms
-    ;(u.uMouse.value as THREE.Vector2).lerp(mouseTarget, k)
-    u.uMouseStrength.value += ((hovered ? 1 : 0) - u.uMouseStrength.value) * k
-    u.uReveal.value += ((hovered ? 1 : idleReveal) - u.uReveal.value) * k
-    u.uTime.value = time
+    const u = material.uniforms;
+    (u.uMouse.value as THREE.Vector2).lerp(mouseTarget, k);
+    u.uMouseStrength.value += ((hovered ? 1 : 0) - u.uMouseStrength.value) * k;
+    u.uReveal.value += ((hovered ? 1 : idleReveal) - u.uReveal.value) * k;
+    u.uTime.value = time;
 
-    renderer.render(scene, camera)
-  }
+    renderer.render(scene, camera);
+  };
 
   const dispose = () => {
-    geometry.dispose()
-    material.dispose()
-    renderer.dispose()
-    renderer.domElement.remove()
-  }
+    geometry.dispose();
+    material.dispose();
+    renderer.dispose();
+    renderer.domElement.remove();
+  };
 
-  return { render, resize, dispose, setPointer, setHover }
+  return { render, resize, dispose, setPointer, setHover };
 }
 
 type HeroWaveProps = {
@@ -198,114 +198,116 @@ type HeroWaveProps = {
    * the cursor, and everything settles back on leave. Events are listened
    * on the parent element (the wave itself is pointer-events-none).
    */
-  interactive?: boolean
+  interactive?: boolean;
   /** Wave intensity while not hovered (only meaningful with `interactive`). */
-  idleIntensity?: number
+  idleIntensity?: number;
   /** Entrance fade delay in seconds. */
-  appearDelay?: number
-}
+  appearDelay?: number;
+};
 
 function HeroWave({
   interactive = false,
   idleIntensity = 1,
   appearDelay = 0.9,
 }: HeroWaveProps) {
-  const containerRef = React.useRef<HTMLDivElement>(null)
-  const [failed, setFailed] = React.useState(false)
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  const [failed, setFailed] = React.useState(false);
 
   React.useEffect(() => {
-    const container = containerRef.current
-    if (!container) return
+    const container = containerRef.current;
+    if (!container) return;
 
-    let wave: ReturnType<typeof createWave>
+    let wave: ReturnType<typeof createWave>;
     try {
       wave = createWave(container, {
         idleReveal: interactive ? idleIntensity : 1,
-      })
+      });
     } catch {
-      setFailed(true)
-      return
+      setFailed(true);
+      return;
     }
 
     const reduceMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
 
     if (reduceMotion) {
       // a single, frozen frame at an interesting point in the cycle
-      wave.render(4)
+      wave.render(4);
     }
 
-    let rafId = 0
-    let visible = true
-    let elapsed = 0
-    let last = 0
+    let rafId = 0;
+    let visible = true;
+    let elapsed = 0;
+    let last = 0;
 
     const loop = (now: number) => {
-      elapsed += (now - last) / 1000
-      last = now
-      wave.render(elapsed)
-      rafId = requestAnimationFrame(loop)
-    }
+      elapsed += (now - last) / 1000;
+      last = now;
+      wave.render(elapsed);
+      rafId = requestAnimationFrame(loop);
+    };
 
     const setRunning = (run: boolean) => {
-      cancelAnimationFrame(rafId)
+      cancelAnimationFrame(rafId);
       if (run && !reduceMotion) {
-        last = performance.now()
-        rafId = requestAnimationFrame(loop)
+        last = performance.now();
+        rafId = requestAnimationFrame(loop);
       }
-    }
+    };
 
-    setRunning(true)
+    setRunning(true);
 
-    const onVisibility = () =>
-      setRunning(!document.hidden && visible)
-    document.addEventListener("visibilitychange", onVisibility)
+    const onVisibility = () => setRunning(!document.hidden && visible);
+    document.addEventListener("visibilitychange", onVisibility);
 
     const intersection = new IntersectionObserver(([entry]) => {
-      visible = entry.isIntersecting
-      setRunning(!document.hidden && visible)
-    })
-    intersection.observe(container)
+      visible = entry.isIntersecting;
+      setRunning(!document.hidden && visible);
+    });
+    intersection.observe(container);
 
-    const resizeObserver = new ResizeObserver(() => wave.resize())
-    resizeObserver.observe(container)
+    const resizeObserver = new ResizeObserver(() => wave.resize());
+    resizeObserver.observe(container);
 
     // the wave div is pointer-events-none, so pointer interactivity is
     // wired to the parent card it lives in
-    let host: HTMLElement | null = null
-    const onEnter = () => wave.setHover(true)
-    const onLeave = () => wave.setHover(false)
-    const onMove = (e: PointerEvent) => wave.setPointer(e.clientX, e.clientY)
+    let host: HTMLElement | null = null;
+    const onEnter = () => wave.setHover(true);
+    const onLeave = () => wave.setHover(false);
+    const onMove = (e: PointerEvent) => wave.setPointer(e.clientX, e.clientY);
     if (interactive && !reduceMotion) {
-      host = container.parentElement ?? container
-      host.addEventListener("pointerenter", onEnter)
-      host.addEventListener("pointerleave", onLeave)
-      host.addEventListener("pointermove", onMove)
+      host = container.parentElement ?? container;
+      host.addEventListener("pointerenter", onEnter);
+      host.addEventListener("pointerleave", onLeave);
+      host.addEventListener("pointermove", onMove);
     }
 
     return () => {
-      cancelAnimationFrame(rafId)
-      document.removeEventListener("visibilitychange", onVisibility)
-      intersection.disconnect()
-      resizeObserver.disconnect()
+      cancelAnimationFrame(rafId);
+      document.removeEventListener("visibilitychange", onVisibility);
+      intersection.disconnect();
+      resizeObserver.disconnect();
       if (host) {
-        host.removeEventListener("pointerenter", onEnter)
-        host.removeEventListener("pointerleave", onLeave)
-        host.removeEventListener("pointermove", onMove)
+        host.removeEventListener("pointerenter", onEnter);
+        host.removeEventListener("pointerleave", onLeave);
+        host.removeEventListener("pointermove", onMove);
       }
-      wave.dispose()
-    }
-  }, [interactive, idleIntensity])
+      wave.dispose();
+    };
+  }, [interactive, idleIntensity]);
 
   if (failed) {
     // no-WebGL fallback: the original static CSS glow
     return (
-      <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-72">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-72"
+      >
         <div className="absolute bottom-[-55%] left-1/2 h-full w-3/4 -translate-x-1/2 rounded-[100%] bg-brand opacity-25 blur-3xl" />
         <div className="absolute bottom-[-65%] left-1/2 h-3/4 w-2/5 -translate-x-1/2 rounded-[100%] bg-brand opacity-50 blur-2xl" />
       </div>
-    )
+    );
   }
 
   return (
@@ -317,7 +319,7 @@ function HeroWave({
       transition={{ delay: appearDelay, duration: 1.4 }}
       className="pointer-events-none absolute inset-0 filter-[blur(3px)]"
     />
-  )
+  );
 }
 
-export { HeroWave }
+export { HeroWave };
